@@ -20,14 +20,17 @@ const NoteRow = ({ note, isOpen, onToggle, delay = 0 }) => {
             transition: "opacity 0.3s ease"
           }}>
           
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem", minWidth: 110 }}>
-            <span style={{ ...T.mono, color: C.ghostInv, fontSize: "0.7rem" }}>{note.date}</span>
-            <span style={{ ...{
-                ...T.label, fontSize: "0.55rem", color: C.faintInv,
-                border: `1px solid ${C.hairInv}`, padding: "0.22rem 0.55rem",
-                alignSelf: "flex-start",
-                letterSpacing: "0.2em", lineHeight: "1.75", margin: "0px", borderWidth: "0px 1px 1px", borderStyle: "solid", borderColor: "rgba(240, 239, 233, 0.14)", borderImage: "none"
-              }, border: "1px solid rgba(240, 239, 233, 0.14)" }}>{note.type}</span>
+          <div style={{ display: "flex", alignItems: "center", minWidth: 90 }}>
+            <span style={{
+              ...T.label,
+              fontSize: "0.62rem",
+              color: C.midInv,
+              fontWeight: 500,
+              letterSpacing: "0.18em",
+              border: `1px solid rgba(240,239,233,0.28)`,
+              padding: "0.28rem 0.65rem",
+              whiteSpace: "nowrap",
+            }}>{note.type}</span>
           </div>
 
           <div>
@@ -95,11 +98,12 @@ const NoteRow = ({ note, isOpen, onToggle, delay = 0 }) => {
 
 const NotesSection = () => {
   const [openIdx, setOpenIdx] = useState(null);
+  const isMobile = useIsMobile();
   return (
     <section id="notes" style={{ ...{
         background: C.bg2,
         borderTop: "1px solid rgba(0,0,0,0.2)",
-        padding: "7rem 3rem 6rem",
+        padding: isMobile ? "4rem 1.25rem" : "7rem 3rem 6rem",
         color: C.inkInv
       }, background: "rgb(28, 26, 24)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
