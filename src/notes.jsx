@@ -101,7 +101,7 @@ const NotesSection = () => {
         borderTop: "1px solid rgba(0,0,0,0.2)",
         padding: "7rem 3rem 6rem",
         color: C.inkInv
-      }, background: "rgb(11, 11, 11)" }}>
+      }, background: "rgb(28, 26, 24)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <SectionHeader
           eyebrow="Notebook · Fragments"
