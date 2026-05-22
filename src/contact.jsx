@@ -8,11 +8,13 @@ const CONTACTS = [
 ["Threads", "@mind_traveler_yu", "https://www.threads.com/@mind_traveler_yu"]];
 
 
-const ContactSection = () =>
+const ContactSection = () => {
+  const isMobile = useIsMobile();
+  return (
 <section id="contact" style={{
   background: C.bg0,
   borderTop: `1px solid ${C.hair}`,
-  padding: "7rem 3rem 7rem",
+  padding: isMobile ? "4rem 1.25rem" : "7rem 3rem 7rem",
   position: "relative",
   overflow: "hidden"
 }}>
@@ -26,7 +28,7 @@ const ContactSection = () =>
   }}>let's talk.</div>
 
     <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
-      <div style={{ display: "grid", gridTemplateColumns: "1.1fr 1fr", gap: "6rem", alignItems: "start" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.1fr 1fr", gap: isMobile ? "3rem" : "6rem", alignItems: "start" }}>
         <div>
           <Fade>
             <Label>Contact</Label>
@@ -91,7 +93,9 @@ const ContactSection = () =>
         </Fade>
       </div>
     </div>
-  </section>;
+  </section>
+  );
+};
 
 
 const Footer = () =>
