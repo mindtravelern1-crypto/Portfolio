@@ -208,9 +208,9 @@ const CaseStudy = ({ work, onClose }) => {
       {/* Main content: sticky TOC + chapters */}
       <div style={{
         maxWidth: 1200, margin: "0 auto",
-        padding: "3rem 3rem 6rem",
+        padding: "3rem 1.5rem 6rem",
         display: "grid",
-        gridTemplateColumns: "200px 1fr",
+        gridTemplateColumns: typeof window !== "undefined" && window.innerWidth < 768 ? "1fr" : "200px 1fr",
         gap: "4rem",
         alignItems: "start",
       }}>
