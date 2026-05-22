@@ -24,7 +24,7 @@ const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
           style={{
             display: "grid",
             gridTemplateColumns: "60px 100px 1fr auto",
-            gap: "1.5rem",
+            gap: "2.5rem",
             alignItems: "center",
             padding: "2.5rem 1.5rem",
             margin: "0 -1.5rem",
