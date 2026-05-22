@@ -22,7 +22,7 @@ const Nav = () => {
   return (
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      padding: condensed ? "0.9rem 3rem" : "1.4rem 3rem",
+      padding: condensed ? "0.9rem 1.5rem" : "1.4rem 1.5rem",
       display: "flex", justifyContent: "space-between", alignItems: "center",
       background: condensed ? "rgba(245,244,240,0.92)" : "transparent",
       backdropFilter: condensed ? "blur(14px)" : "none",
