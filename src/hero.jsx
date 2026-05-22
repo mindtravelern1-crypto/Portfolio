@@ -78,6 +78,7 @@ const PILLAR_LINES = [
 
 const Hero = () => {
   const scrollY = useScrollY();
+  const isMobile = useIsMobile();
   const charY = Math.min(scrollY * 0.22, 180);
   const charOpacity = Math.max(0.02 - scrollY * 0.00004, 0.005);
 
@@ -85,7 +86,7 @@ const Hero = () => {
     <section style={{
       position: "relative",
       minHeight: "100vh",
-      padding: "8rem 3rem 4rem",
+      padding: isMobile ? "6rem 1.25rem 3rem" : "8rem 3rem 4rem",
       display: "flex", flexDirection: "column",
       background: C.bg0,
       overflow: "hidden"
