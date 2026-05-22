@@ -6,6 +6,7 @@ const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
   const [hover, setHover] = useState(false);
   const rowRef = useRef(null);
   const [c1, c2, c3] = work.palette;
+  const isMobile = useIsMobile();
 
   return (
     <Fade delay={delay}>
@@ -23,8 +24,8 @@ const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
           onMouseLeave={() => setHover(false)}
           style={{
             display: "grid",
-            gridTemplateColumns: "60px 100px 1fr auto",
-            gap: "2.5rem",
+            gridTemplateColumns: isMobile ? "1fr auto" : "60px 100px 1fr auto",
+            gap: isMobile ? "1rem" : "2.5rem",
             alignItems: "center",
             padding: "2.5rem 1.5rem",
             margin: "0 -1.5rem",
@@ -35,7 +36,7 @@ const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
           }}>
           
           {/* Index — large mono */}
-          <div style={{
+          {!isMobile && <div style={{
             ...T.mono,
             fontSize: "0.78rem", color: C.ghost,
             letterSpacing: "0.1em",
@@ -44,10 +45,10 @@ const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
             transition: "transform 0.4s cubic-bezier(.2,.8,.2,1)"
           }}>
             — {work.id}
-          </div>
+          </div>}
 
           {/* Category chip(s) */}
-          <div style={{ paddingTop: "0.4rem", display: "flex", flexWrap: "wrap", gap: "0.3rem" }}>
+          {!isMobile && <div style={{ paddingTop: "0.4rem", display: "flex", flexWrap: "wrap", gap: "0.3rem" }}>
             {(Array.isArray(work.category) ? work.category : [work.category]).map(cat => (
               <span key={cat} style={{
                 ...T.label, fontSize: "0.6rem",
@@ -58,7 +59,7 @@ const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
                 whiteSpace: "nowrap"
               }}>{cat}</span>
             ))}
-          </div>
+          </div>}
 
           {/* Title block */}
           <div>
@@ -122,8 +123,8 @@ const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
               {/* Top row: tags + brief + CTA */}
               <div style={{
                 display: "grid",
-                gridTemplateColumns: "200px 1fr",
-                gap: "4.5rem",
+                gridTemplateColumns: isMobile ? "1fr" : "200px 1fr",
+                gap: isMobile ? "1.5rem" : "3rem",
                 marginBottom: "3rem",
                 alignItems: "start"
               }}>
@@ -216,6 +217,7 @@ const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
 
 const WorksSection = ({ onOpenCase }) => {
   const [openIds, setOpenIds] = useState(new Set());
+  const isMobile = useIsMobile();
   const toggle = (id) => setOpenIds((prev) => {
     const next = new Set(prev);
     if (next.has(id)) next.delete(id);else
@@ -227,7 +229,7 @@ const WorksSection = ({ onOpenCase }) => {
     <section id="works" style={{
       background: C.bg1,
       borderTop: `1px solid ${C.hair}`,
-      padding: "7rem 3rem 6rem", lineHeight: "1.75"
+      padding: isMobile ? "4rem 1.25rem 4rem" : "7rem 3rem 6rem", lineHeight: "1.75"
     }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <SectionHeader
