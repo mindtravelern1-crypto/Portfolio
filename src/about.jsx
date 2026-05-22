@@ -2,18 +2,20 @@
    ABOUT — sidebar label + serif essay
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-const AboutSection = () => (
+const AboutSection = () => {
+  const isMobile = useIsMobile();
+  return (
   <section id="about" style={{
     background: C.bg1,
     borderTop: `1px solid ${C.hair}`,
-    padding: "7rem 3rem 7rem",
+    padding: isMobile ? "4rem 1.25rem" : "7rem 3rem 7rem",
     position: "relative",
   }}>
     <div style={{ maxWidth: 1200, margin: "0 auto" }}>
       <div style={{
         display: "grid",
-        gridTemplateColumns: "220px 1fr",
-        gap: "5rem",
+        gridTemplateColumns: isMobile ? "1fr" : "220px 1fr",
+        gap: isMobile ? "2.5rem" : "5rem",
         alignItems: "start",
       }}>
         {/* Sidebar */}
@@ -128,6 +130,7 @@ const AboutSection = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 window.AboutSection = AboutSection;
