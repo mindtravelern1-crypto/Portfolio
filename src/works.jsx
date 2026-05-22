@@ -123,7 +123,7 @@ const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
               <div style={{
                 display: "grid",
                 gridTemplateColumns: "200px 1fr",
-                gap: "3rem",
+                gap: "4.5rem",
                 marginBottom: "3rem",
                 alignItems: "start"
               }}>
