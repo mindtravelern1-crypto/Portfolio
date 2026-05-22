@@ -258,10 +258,20 @@ const SectionHeader = ({ eyebrow, title, subtitle, dark = false, right }) =>
   </div>;
 
 
+const useIsMobile = () => {
+  const [mobile, setMobile] = useState(() => window.innerWidth < 768);
+  useEffect(() => {
+    const fn = () => setMobile(window.innerWidth < 768);
+    window.addEventListener("resize", fn);
+    return () => window.removeEventListener("resize", fn);
+  }, []);
+  return mobile;
+};
+
 /* Expose to window so other Babel scripts can use them */
 Object.assign(window, {
   T, C,
-  useInView, useScrollY,
+  useInView, useScrollY, useIsMobile,
   Fade, RevealText,
   expandStyle, expandInnerStyle,
   Label, Chip, StatusDot, SectionHeader
