@@ -87,7 +87,7 @@ const ExperienceSection = () => {
               <a href="https://job-tracker-docs.vercel.app" target="_blank" rel="noopener noreferrer" className="ul">職缺追蹤網站</a>
               、
               <a href="https://design-gym-ntfu.vercel.app" target="_blank" rel="noopener noreferrer" className="ul">設計與繪畫訓練場</a>
-              。需求與體驗由我提出，程式由 Claude 等 AI 工具撰寫。
+              。我和 Claude 等 AI 工具協作，做成能用的版本，再自己用過再改。
             </p>
           </div>
         </div>
