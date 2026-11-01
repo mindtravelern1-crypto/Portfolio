@@ -171,7 +171,7 @@ const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
                     className="ul"
                     onClick={(e) => e.stopPropagation()}
                     style={{ ...T.bodyS, color: C.faint, fontSize: "0.88rem" }}>
-                      體驗產品</a>
+                      {work.linkLabel || "體驗產品"}</a>
                     }
                   </div>
                 </div>

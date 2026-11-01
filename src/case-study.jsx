@@ -86,7 +86,7 @@ const CaseStudy = ({ work, onClose }) => {
             <a href={work.link} target="_blank" rel="noopener noreferrer"
               className="ul"
               style={{ ...T.bodyS, color: C.ink, fontSize: "0.82rem" }}
-            >體驗產品 ↗</a>
+            >{work.linkLabel || "體驗產品"} ↗</a>
           )}
         </div>
       </div>
@@ -320,7 +320,7 @@ const CaseStudy = ({ work, onClose }) => {
                   }}
                   onMouseEnter={e => e.currentTarget.style.transform = "translateY(-2px)"}
                   onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
-                >前往體驗 ↗</a>
+                >{work.linkLabel || "前往體驗"} ↗</a>
               )}
               {work.figma && (
                 <a href={work.figma} target="_blank" rel="noopener noreferrer"
