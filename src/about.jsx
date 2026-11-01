@@ -32,7 +32,8 @@ const AboutSection = () => {
           <Fade delay={0.12}>
             <div style={{ ...T.label, color: C.faint, marginBottom: "0.65rem" }}>Now</div>
             <p style={{ ...T.caption, color: C.mid, margin: 0, lineHeight: 1.8 }}>
-              心理系大二<br />
+              心理系大三<br />
+              預計 2028 畢業<br />
               學 UIUX · 創業課程<br />
               台北 / Taipei
             </p>
@@ -64,7 +65,7 @@ const AboutSection = () => {
               探索，是為了<br />
               <span style={{
                 fontFamily: "'Cormorant Garamond',serif",
-                fontStyle: "italic", opacity: 0.55,
+                fontStyle: "italic", opacity: 0.72,
               }}>擴展邊界 — 擴大舒適圈。</span>
             </h2>
           </Fade>
@@ -98,8 +99,13 @@ const AboutSection = () => {
               </p>
             </Fade>
             <Fade delay={0.38}>
+              <p style={{ ...T.body, color: C.mid, marginBottom: "1.5rem", fontSize: "1rem" }}>
+                現在是東吳心理系大三，預計 2028 畢業，同時在學 UIUX、商用設計，也修創業思維與實務。統計與實驗方法是系上的課。不太確定這些最終會走到哪裡，但我知道我一直在找的是同一件事。
+              </p>
+            </Fade>
+            <Fade delay={0.44}>
               <p style={{ ...T.body, color: C.mid, marginBottom: "3rem", fontSize: "1rem" }}>
-                現在是心理系大二，同時在學 UIUX、商用設計，也修創業思維與實務。不太確定這些最終會走到哪裡，但我知道我一直在找的是同一件事。
+                做網頁的時候，需求與體驗由我決定，程式由 Claude 等 AI 工具撰寫；我自己會寫的只有 HTML。介面用 Figma，插畫用 Procreate。也會依手機版與電腦版調整畫面，並用手機和電腦實際操作，把跑版和不好用的地方改掉。
               </p>
             </Fade>
           </div>
@@ -117,7 +123,7 @@ const AboutSection = () => {
               {[
                 { k: "心理學", v: "理解人怎麼想、怎麼選擇、怎麼變化的內在運作。" },
                 { k: "UIUX", v: "理解介面怎麼成為一種讓人能誠實的環境。" },
-                { k: "Vibe Coding", v: "把點子做出來、放到網路上，讓真實的人去用。" },
+                { k: "Vibe Coding", v: "需求與體驗我來定，程式由 Claude 等 AI 工具撰寫。" },
               ].map(({ k, v }) => (
                 <div key={k}>
                   <div style={{ ...T.label, color: C.faint, marginBottom: "0.65rem" }}>{k}</div>

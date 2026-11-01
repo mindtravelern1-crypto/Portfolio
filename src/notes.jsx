@@ -16,7 +16,7 @@ const NoteRow = ({ note, isOpen, onToggle, delay = 0 }) => {
             cursor: "pointer", userSelect: "none",
             display: "grid", gridTemplateColumns: "auto 1fr auto", gap: "2rem",
             alignItems: "baseline",
-            opacity: isOpen ? 1 : hover ? 0.92 : 0.62,
+            opacity: isOpen ? 1 : hover ? 1 : 0.92,
             transition: "opacity 0.3s ease"
           }}>
           
@@ -46,8 +46,8 @@ const NoteRow = ({ note, isOpen, onToggle, delay = 0 }) => {
           </div>
 
           <div style={{
-            ...T.label, color: C.inkInv, fontSize: "0.6rem",
-            opacity: isOpen ? 0.85 : 0.35,
+            ...T.label, color: C.inkInv, fontSize: "0.68rem",
+            opacity: 1,
             transition: "opacity 0.3s"
           }}>
             <span style={{
@@ -103,7 +103,7 @@ const NotesSection = () => {
     <section id="notes" style={{ ...{
         background: C.bg2,
         borderTop: "1px solid rgba(0,0,0,0.2)",
-        padding: isMobile ? "4rem 1.25rem" : "7rem 3rem 6rem",
+        padding: isMobile ? "4rem 1.25rem" : "7rem 3rem",
         color: C.inkInv
       }, background: "rgb(28, 26, 24)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>

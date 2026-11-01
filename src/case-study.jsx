@@ -5,6 +5,7 @@
 const CaseStudy = ({ work, onClose }) => {
   const [activeCh, setActiveCh] = useState(0);
   const scrollerRef = useRef(null);
+  const isMobile = useIsMobile();
 
   /* Lock body scroll while open */
   useEffect(() => {
@@ -64,8 +65,10 @@ const CaseStudy = ({ work, onClose }) => {
         background: "rgba(245,244,240,0.92)",
         backdropFilter: "blur(14px)",
         borderBottom: `1px solid ${C.hair}`,
-        padding: "1.1rem 2.5rem",
+        padding: isMobile ? "0.85rem 1.15rem" : "1.1rem 2.5rem",
         display: "flex", alignItems: "center", justifyContent: "space-between",
+        flexWrap: "wrap",
+        gap: "0.55rem 1rem",
       }}>
         <button onClick={onClose} style={{
           background: "none", border: "none", cursor: "pointer",
@@ -86,14 +89,14 @@ const CaseStudy = ({ work, onClose }) => {
             <a href={work.link} target="_blank" rel="noopener noreferrer"
               className="ul"
               style={{ ...T.bodyS, color: C.ink, fontSize: "0.82rem" }}
-            >體驗產品 ↗</a>
+            >{work.linkLabel || "體驗產品"} ↗</a>
           )}
         </div>
       </div>
 
       {/* HERO */}
       <div style={{
-        padding: "5rem 3rem 4rem",
+        padding: isMobile ? "3.5rem 1.25rem 3rem" : "5rem 3rem 4rem",
         maxWidth: 1200, margin: "0 auto",
         position: "relative",
       }}>
@@ -130,7 +133,7 @@ const CaseStudy = ({ work, onClose }) => {
             <span style={{ ...T.mono, color: C.faint, fontSize: "0.7rem" }}>{work.year}</span>
             <span style={{ ...T.mono, color: C.ghost, fontSize: "0.6rem" }}>·</span>
             {/* 細項 */}
-            <span style={{ ...T.label, color: C.ghost, fontSize: "0.58rem" }}>{work.type}</span>
+            <span style={{ ...T.label, color: C.ghost, fontSize: "0.68rem" }}>{work.type}</span>
             <span style={{ ...T.mono, color: C.ghost, fontSize: "0.6rem" }}>·</span>
             {/* 狀態 */}
             <StatusDot status={work.status} />
@@ -237,18 +240,15 @@ const CaseStudy = ({ work, onClose }) => {
                     gap: "0.5rem",
                     alignItems: "baseline",
                     padding: "0.4rem 0",
-                    opacity: active ? 1 : 0.42,
-                    transition: "opacity 0.3s ease, transform 0.3s ease",
+                    transition: "transform 0.3s ease",
                     transform: active ? "translateX(4px)" : "translateX(0)",
                   }}
-                  onMouseEnter={e => e.currentTarget.style.opacity = 0.9}
-                  onMouseLeave={e => e.currentTarget.style.opacity = active ? 1 : 0.42}
                 >
-                  <span style={{ ...T.mono, color: C.faint, fontSize: "0.66rem" }}>
+                  <span style={{ ...T.mono, color: active ? C.ink : C.faint, fontSize: "0.72rem" }}>
                     {ch.n}
                   </span>
                   <span style={{
-                    ...T.bodyS, color: C.ink, fontSize: "0.88rem",
+                    ...T.bodyS, color: active ? C.ink : C.faint, fontSize: "0.92rem", fontWeight: active ? 500 : 400,
                     borderBottom: active ? `1px solid ${C.ink}` : "1px solid transparent",
                     paddingBottom: "0.08rem", display: "inline-block",
                     transition: "border-color 0.3s ease",
@@ -266,7 +266,7 @@ const CaseStudy = ({ work, onClose }) => {
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
               {work.tags.map(t => (
                 <span key={t} style={{
-                  ...T.label, fontSize: "0.54rem", color: C.faint,
+                  ...T.label, fontSize: "0.64rem", color: C.faint,
                   border: `1px solid ${C.hair}`, padding: "0.22rem 0.5rem",
                   letterSpacing: "0.18em",
                 }}>{t}</span>
@@ -308,29 +308,29 @@ const CaseStudy = ({ work, onClose }) => {
             </p>
             <div style={{ display: "flex", gap: "2rem", alignItems: "center", flexWrap: "wrap" }}>
               {work.link && (
-                <a href={work.link} target="_blank" rel="noopener noreferrer"
+                <a href={work.link} target="_blank" rel="noopener noreferrer" className="cta"
                   style={{
                     background: C.ink, color: C.bg0,
-                    padding: "0.85rem 1.6rem",
+                    padding: "0.9rem 1.5rem",
                     ...T.label, color: C.bg0,
-                    fontSize: "0.62rem", letterSpacing: "0.2em",
+                    fontSize: "0.72rem", letterSpacing: "0.12em",
                     textDecoration: "none",
-                    transition: "transform 0.25s ease",
+                    transition: "transform 0.25s ease, box-shadow 0.25s ease",
                     display: "inline-block",
                   }}
                   onMouseEnter={e => e.currentTarget.style.transform = "translateY(-2px)"}
                   onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
-                >前往體驗 ↗</a>
+                >{work.linkLabel || "前往體驗"} ↗</a>
               )}
               {work.figma && (
-                <a href={work.figma} target="_blank" rel="noopener noreferrer"
+                <a href={work.figma} target="_blank" rel="noopener noreferrer" className="cta"
                   style={{
                     background: C.ink, color: C.bg0,
-                    padding: "0.85rem 1.6rem",
+                    padding: "0.9rem 1.5rem",
                     ...T.label, color: C.bg0,
-                    fontSize: "0.62rem", letterSpacing: "0.2em",
+                    fontSize: "0.72rem", letterSpacing: "0.12em",
                     textDecoration: "none",
-                    transition: "transform 0.25s ease",
+                    transition: "transform 0.25s ease, box-shadow 0.25s ease",
                     display: "inline-block",
                   }}
                   onMouseEnter={e => e.currentTarget.style.transform = "translateY(-2px)"}

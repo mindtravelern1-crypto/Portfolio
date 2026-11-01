@@ -14,62 +14,62 @@ const T = {
   },
   h1: {
     fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
-    fontWeight: 300,
+    fontWeight: 400,
     fontSize: "clamp(2rem, 3.8vw, 2.9rem)",
     lineHeight: 1.2,
     letterSpacing: "-0.018em"
   },
   h2: {
     fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
-    fontWeight: 300,
+    fontWeight: 500,
     fontSize: "clamp(1.55rem, 2.8vw, 2.05rem)",
     lineHeight: 1.25,
     letterSpacing: "-0.015em"
   },
   h3: {
     fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
-    fontWeight: 300,
+    fontWeight: 500,
     fontSize: "clamp(1.3rem, 2.4vw, 1.75rem)",
     lineHeight: 1.35,
     letterSpacing: "-0.012em"
   },
   h4: {
     fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
-    fontWeight: 400,
+    fontWeight: 500,
     fontSize: "clamp(1.05rem, 1.7vw, 1.2rem)",
     lineHeight: 1.4,
     letterSpacing: "-0.005em"
   },
   body: {
     fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
-    fontWeight: 300,
+    fontWeight: 400,
     fontSize: "1.02rem",
     lineHeight: 2.05
   },
   bodyS: {
     fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
-    fontWeight: 300,
+    fontWeight: 400,
     fontSize: "0.92rem",
     lineHeight: 1.95
   },
   caption: {
     fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
-    fontWeight: 300,
+    fontWeight: 400,
     fontSize: "0.88rem",
     lineHeight: 1.85
   },
   label: {
     fontFamily: "'JetBrains Mono', ui-monospace, monospace",
-    fontWeight: 400,
-    fontSize: "0.66rem",
-    letterSpacing: "0.24em",
+    fontWeight: 500,
+    fontSize: "0.7rem",
+    letterSpacing: "0.16em",
     textTransform: "uppercase"
   },
   mono: {
     fontFamily: "'JetBrains Mono', ui-monospace, monospace",
-    fontWeight: 300,
-    fontSize: "0.72rem",
-    letterSpacing: "0.08em"
+    fontWeight: 400,
+    fontSize: "0.75rem",
+    letterSpacing: "0.06em"
   }
 };
 
@@ -81,8 +81,8 @@ const C = {
   paper: "#ece9e2",
   ink: "#1a1a1a",
   mid: "#3a3a3a",
-  faint: "#666",
-  ghost: "#999",
+  faint: "#524e4a",
+  ghost: "#6a6460",
   hair: "rgba(26,26,26,0.12)",
   hairSoft: "rgba(26,26,26,0.07)",
   hairBold: "rgba(26,26,26,0.22)",
@@ -90,7 +90,7 @@ const C = {
   inkInv: "#f0efe9",
   midInv: "rgba(240,239,233,0.88)",
   faintInv: "rgba(240,239,233,0.7)",
-  ghostInv: "rgba(240,239,233,0.45)",
+  ghostInv: "rgba(240,239,233,0.72)",
   hairInv: "rgba(240,239,233,0.14)"
 };
 
@@ -210,8 +210,10 @@ const StatusDot = ({ status, dark = false }) => {
   return (
     <span style={{
       ...T.label,
-      color: dark ? C.faintInv : C.faint,
-      display: "inline-flex", alignItems: "center", gap: "0.45rem", fontSize: "12px"
+      color: dark ? C.inkInv : C.mid,
+      fontWeight: 500,
+      letterSpacing: "0.08em",
+      display: "inline-flex", alignItems: "center", gap: "0.45rem", fontSize: "0.75rem"
     }}>
       <span style={{
         width: 5, height: 5, borderRadius: "50%",
@@ -229,8 +231,8 @@ const StatusDot = ({ status, dark = false }) => {
 const SectionHeader = ({ eyebrow, title, subtitle, dark = false, right }) =>
 <div style={{
   display: "flex", justifyContent: "space-between", alignItems: "flex-end",
-  flexWrap: "wrap", gap: "2rem", marginBottom: "3.5rem",
-  paddingBottom: "1.75rem",
+  flexWrap: "wrap", gap: "1.5rem", marginBottom: "2.75rem",
+  paddingBottom: "1.35rem",
   borderBottom: `1px solid ${dark ? C.hairInv : C.hair}`
 }}>
     <div>

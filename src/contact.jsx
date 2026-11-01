@@ -44,7 +44,7 @@ const ContactSection = () => {
               如果你也在想這些事，<br />
               <span style={{
               fontFamily: "'Cormorant Garamond',serif",
-              fontStyle: "italic", opacity: 0.55
+              fontStyle: "italic", opacity: 0.72
             }}>歡迎來聊聊。</span>
             </h2>
           </Fade>

@@ -72,7 +72,7 @@ const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
 
                 color: C.ink, margin: 0,
                 transition: "letter-spacing 0.4s ease",
-                letterSpacing: hover ? "0.005em" : "-0.018em", fontSize: "24px"
+                letterSpacing: hover ? "0.005em" : "-0.018em", fontSize: "1.5rem", fontWeight: 500
               }}>{work.title}</h3>
               <span style={{
                 fontFamily: "'Cormorant Garamond','Noto Serif TC',serif",
@@ -98,10 +98,9 @@ const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
             <StatusDot status={work.status} />
             <div style={{
               marginTop: "0.6rem",
-              ...T.label, color: C.ink, fontSize: "0.6rem",
+              ...T.label, color: isOpen ? C.ink : C.faint, fontSize: "0.68rem",
               display: "flex", alignItems: "center", gap: "0.4rem",
-              opacity: isOpen ? 1 : 0.45,
-              transition: "opacity 0.3s ease"
+              transition: "color 0.2s ease"
             }}>
               <span>{isOpen ? "收起" : "展開"}</span>
               <span style={{
@@ -133,7 +132,7 @@ const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
                     {work.tags.map((tag) =>
                     <span key={tag} style={{
-                      ...T.label, fontSize: "0.55rem", color: C.faint,
+                      ...T.label, fontSize: "0.64rem", color: C.faint,
                       border: `1px solid ${C.hair}`, padding: "0.25rem 0.6rem",
                       letterSpacing: "0.18em", whiteSpace: "nowrap"
                     }}>{tag}</span>
@@ -151,16 +150,17 @@ const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
                     display: "flex", alignItems: "center", gap: "1.75rem", flexWrap: "wrap"
                   }}>
                     <button
+                      className="cta"
                       onClick={(e) => {e.stopPropagation();onOpenCase(work);}}
                       style={{
                         background: C.ink, color: C.bg0,
                         border: "none",
-                        padding: "0.85rem 1.6rem",
+                        padding: "0.9rem 1.5rem",
                         ...T.label, color: C.bg0,
-                        fontSize: "0.62rem",
+                        fontSize: "0.72rem",
                         cursor: "pointer",
-                        transition: "transform 0.25s ease, opacity 0.25s ease",
-                        letterSpacing: "0.2em"
+                        transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                        letterSpacing: "0.12em"
                       }}
                       onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"}
                       onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>
@@ -170,8 +170,8 @@ const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
                     <a href={work.link} target="_blank" rel="noopener noreferrer"
                     className="ul"
                     onClick={(e) => e.stopPropagation()}
-                    style={{ ...T.bodyS, color: C.faint, fontSize: "0.88rem" }}>
-                      體驗產品</a>
+                    style={{ ...T.bodyS, color: C.ink, fontSize: "0.92rem", fontWeight: 500 }}>
+                      {work.linkLabel || "體驗產品"}</a>
                     }
                   </div>
                 </div>
@@ -229,7 +229,7 @@ const WorksSection = ({ onOpenCase }) => {
     <section id="works" style={{
       background: C.bg1,
       borderTop: `1px solid ${C.hair}`,
-      padding: isMobile ? "4rem 1.25rem 4rem" : "7rem 3rem 6rem", lineHeight: "1.75"
+      padding: isMobile ? "4rem 1.25rem" : "7rem 3rem", lineHeight: "1.75"
     }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <SectionHeader

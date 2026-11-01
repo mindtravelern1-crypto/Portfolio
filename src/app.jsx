@@ -13,17 +13,21 @@ const NAV_LINKS = [
 ["作品", "#works"],
 ["筆記", "#notes"],
 ["關於", "#about"],
+["經歷", "#experience"],
 ["聯繫", "#contact"]];
 
 
 const Nav = () => {
   const scrollY = useScrollY();
+  const isMobile = useIsMobile();
   const condensed = scrollY > 60;
   return (
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      padding: condensed ? "0.9rem 1.5rem" : "1.4rem 1.5rem",
+      padding: condensed ? "0.9rem 1.5rem" : isMobile ? "1.1rem 1.25rem" : "1.4rem 1.5rem",
       display: "flex", justifyContent: "space-between", alignItems: "center",
+      flexWrap: "wrap",
+      rowGap: "0.65rem",
       background: condensed ? "rgba(245,244,240,0.92)" : "transparent",
       backdropFilter: condensed ? "blur(14px)" : "none",
       borderBottom: condensed ? `1px solid ${C.hair}` : "1px solid transparent",
@@ -40,15 +44,15 @@ const Nav = () => {
         }}>Anya</span>
       </a>
 
-      <div style={{ display: "flex", gap: "2.5rem", alignItems: "center" }}>
+      <div style={{ display: "flex", gap: isMobile ? "0.95rem" : "2.5rem", alignItems: "center", flexWrap: "wrap" }}>
         {NAV_LINKS.map(([txt, href]) =>
         <a key={txt} href={href} style={{
-          ...T.label, color: C.ink,
-          textDecoration: "none", fontSize: "0.6rem",
-          transition: "opacity 0.25s ease", opacity: "0.58"
+          ...T.label, color: C.faint,
+          textDecoration: "none", fontSize: "0.68rem",
+          transition: "color 0.2s ease"
         }}
-        onMouseEnter={(e) => e.currentTarget.style.opacity = 0.92}
-        onMouseLeave={(e) => e.currentTarget.style.opacity = 0.32}>
+        onMouseEnter={(e) => e.currentTarget.style.color = C.ink}
+        onMouseLeave={(e) => e.currentTarget.style.color = C.faint}>
           {txt}</a>
         )}
       </div>
@@ -85,6 +89,7 @@ const Portfolio = () => {
       <WorksSection onOpenCase={setPanelWork} />
       <NotesSection />
       <AboutSection />
+      <ExperienceSection />
       <ContactSection />
       <Footer />
 
