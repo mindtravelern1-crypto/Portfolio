@@ -47,12 +47,12 @@ const Nav = () => {
       <div style={{ display: "flex", gap: isMobile ? "0.95rem" : "2.5rem", alignItems: "center", flexWrap: "wrap" }}>
         {NAV_LINKS.map(([txt, href]) =>
         <a key={txt} href={href} style={{
-          ...T.label, color: C.ink,
-          textDecoration: "none", fontSize: "0.6rem",
-          transition: "opacity 0.25s ease", opacity: "0.58"
+          ...T.label, color: C.faint,
+          textDecoration: "none", fontSize: "0.68rem",
+          transition: "color 0.2s ease"
         }}
-        onMouseEnter={(e) => e.currentTarget.style.opacity = 0.92}
-        onMouseLeave={(e) => e.currentTarget.style.opacity = 0.32}>
+        onMouseEnter={(e) => e.currentTarget.style.color = C.ink}
+        onMouseLeave={(e) => e.currentTarget.style.color = C.faint}>
           {txt}</a>
         )}
       </div>

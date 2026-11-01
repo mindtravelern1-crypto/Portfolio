@@ -174,12 +174,9 @@ const Hero = () => {
           <a href="#works" className="ul" style={{ ...T.bodyS, color: C.ink, fontSize: "0.88rem" }}>
             看作品 →
           </a>
-          <a href="#about" style={{
-            ...T.label, color: C.ink, opacity: 0.4, textDecoration: "none",
-            transition: "opacity 0.25s"
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.opacity = 0.8}
-          onMouseLeave={(e) => e.currentTarget.style.opacity = 0.4}>
+          <a href="#about" className="ul" style={{
+            ...T.bodyS, color: C.ink, fontSize: "0.88rem"
+          }}>
             關於我</a>
         </div>
       </div>

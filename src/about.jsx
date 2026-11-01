@@ -65,7 +65,7 @@ const AboutSection = () => {
               探索，是為了<br />
               <span style={{
                 fontFamily: "'Cormorant Garamond',serif",
-                fontStyle: "italic", opacity: 0.55,
+                fontStyle: "italic", opacity: 0.72,
               }}>擴展邊界 — 擴大舒適圈。</span>
             </h2>
           </Fade>
