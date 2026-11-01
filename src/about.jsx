@@ -123,7 +123,7 @@ const AboutSection = () => {
               {[
                 { k: "心理學", v: "理解人怎麼想、怎麼選擇、怎麼變化的內在運作。" },
                 { k: "UIUX", v: "理解介面怎麼成為一種讓人能誠實的環境。" },
-                { k: "Vibe Coding", v: "和 Claude 等 AI 工具一起做成能用的版本，再自己用過、改到順。" },
+                { k: "Vibe Coding", v: "和 AI 一起把點子做出來，做我自己每天會用的工具。" },
               ].map(({ k, v }) => (
                 <div key={k}>
                   <div style={{ ...T.label, color: C.faint, marginBottom: "0.65rem" }}>{k}</div>
