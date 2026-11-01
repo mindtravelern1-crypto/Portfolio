@@ -5,6 +5,7 @@
 const CaseStudy = ({ work, onClose }) => {
   const [activeCh, setActiveCh] = useState(0);
   const scrollerRef = useRef(null);
+  const isMobile = useIsMobile();
 
   /* Lock body scroll while open */
   useEffect(() => {
@@ -64,8 +65,10 @@ const CaseStudy = ({ work, onClose }) => {
         background: "rgba(245,244,240,0.92)",
         backdropFilter: "blur(14px)",
         borderBottom: `1px solid ${C.hair}`,
-        padding: "1.1rem 2.5rem",
+        padding: isMobile ? "0.85rem 1.15rem" : "1.1rem 2.5rem",
         display: "flex", alignItems: "center", justifyContent: "space-between",
+        flexWrap: "wrap",
+        gap: "0.55rem 1rem",
       }}>
         <button onClick={onClose} style={{
           background: "none", border: "none", cursor: "pointer",
@@ -93,7 +96,7 @@ const CaseStudy = ({ work, onClose }) => {
 
       {/* HERO */}
       <div style={{
-        padding: "5rem 3rem 4rem",
+        padding: isMobile ? "3.5rem 1.25rem 3rem" : "5rem 3rem 4rem",
         maxWidth: 1200, margin: "0 auto",
         position: "relative",
       }}>

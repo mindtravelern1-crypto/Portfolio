@@ -124,7 +124,7 @@ const Placeholder = ({ kind, caption, palette = ["#e8d9c2", "#3a3a3a", "#1a1a1a"
     /* FigJam-style sticky notes + connectors — designed thinking board */
     const stickies = [
       { x: 8,  y: 18, w: 22, label: "WHY",    text: "為什麼選擇\n變得這麼難？", c: "#ffd6a8" },
-      { x: 35, y: 12, w: 24, label: "NOTES", text: "個人觀察\n幾個情況", c: "#c8e3c5" },
+      { x: 35, y: 12, w: 24, label: "RESEARCH", text: "18-25 訪談\n4 個模式", c: "#c8e3c5" },
       { x: 64, y: 22, w: 22, label: "INSIGHT", text: "探索缺少\n長期機制", c: "#f4c7c7" },
       { x: 14, y: 55, w: 26, label: "FLOW",   text: "Explore →\nReflect →\nPattern", c: "#cdd9f0" },
       { x: 46, y: 60, w: 22, label: "AI",     text: "反問\n不是給答案", c: "#e4d2f0" },
