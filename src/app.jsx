@@ -51,7 +51,7 @@ const Nav = () => {
           textDecoration: "none", fontSize: "0.8rem",
           transition: "color 0.2s ease"
         }}
-        onMouseEnter={(e) => e.currentTarget.style.color = C.ink}
+        onMouseEnter={(e) => e.currentTarget.style.color = C.accent}
         onMouseLeave={(e) => e.currentTarget.style.color = C.faint}>
           {txt}</a>
         )}
@@ -88,6 +88,7 @@ const Portfolio = () => {
       <Hero />
       <WorksSection onOpenCase={setPanelWork} />
       <AboutSection />
+      <IllustrationSection />
       <ExperienceSection />
       <NotesSection />
       <ContactSection />

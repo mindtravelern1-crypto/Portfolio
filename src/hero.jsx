@@ -2,6 +2,29 @@
    HERO — first screen, works peek below
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
+const HeroCat = ({ compact = false }) => (
+  <div style={{
+    width: compact ? 96 : "100%",
+    height: compact ? 96 : 380,
+    margin: compact ? "0 0 1rem" : 0,
+    overflow: "hidden",
+    borderRadius: compact ? 14 : 18,
+    pointerEvents: "none",
+  }}>
+    <img
+      src="assets/works/04-cat.png"
+      alt="CATI 手繪貓咪"
+      style={{
+        width: "100%",
+        height: "140%",
+        objectFit: "cover",
+        objectPosition: "center 8%",
+        display: "block",
+      }}
+    />
+  </div>
+);
+
 const PILLAR_LINES = [
 { gray: "透過", noun: "內容", outcome: "理解人", suffix: "" },
 { gray: "透過", noun: "產品", outcome: "放大幫助", suffix: "" },
@@ -32,20 +55,26 @@ const Hero = () => {
     }}>
       <div style={{
         maxWidth: 1200, margin: "0 auto", width: "100%",
-        display: "flex", flexDirection: "column", justifyContent: "center",
-        padding: isMobile ? "1.5rem 0 0.5rem" : "2.5rem 0 1rem",
+        display: "grid",
+        gridTemplateColumns: isMobile ? "1fr" : "1.15fr 0.85fr",
+        gap: isMobile ? 0 : "2rem",
+        alignItems: "center",
+        padding: isMobile ? "1.5rem 0 0.5rem" : "2rem 0 0.5rem",
         position: "relative", zIndex: 2
       }}>
+      <div style={{ position: "relative", zIndex: 2 }}>
         <div style={{
           display: "flex", alignItems: "center", gap: "0.9rem",
           marginBottom: "1.75rem",
           opacity: 0, animation: "fup 0.8s ease 0.1s forwards"
         }}>
-          <span style={{ width: 32, height: 1, background: C.ink, opacity: 0.4 }} />
-          <span style={{ ...T.label, color: C.faint, fontSize: "0.8rem" }}>
+          <span style={{ width: 32, height: 1, background: C.accent }} />
+          <span style={{ ...T.label, color: C.accent, fontSize: "0.8rem" }}>
             心理系 · 體驗設計 · 跨域學習中
           </span>
         </div>
+
+        {isMobile && <HeroCat compact />}
 
         <h1 style={{
           margin: 0,
@@ -89,13 +118,15 @@ const Hero = () => {
           opacity: 0, animation: "fup 0.8s ease 0.9s forwards"
         }}>
           <a href="#works" className="cta" style={{
-            ...btn, background: C.ink, color: C.bg0
+            ...btn, background: C.accent, color: C.bg0
           }}>看作品</a>
           <a href="#contact" style={{
             ...btn, background: "transparent", color: C.ink,
             border: `1px solid ${C.ink}`
           }}>聯繫</a>
         </div>
+      </div>
+      {!isMobile && <HeroCat />}
       </div>
     </section>);
 

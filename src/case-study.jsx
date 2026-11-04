@@ -191,8 +191,8 @@ const CaseStudy = ({ work, onClose }) => {
               margin: "0 0 2.5rem",
             }}>
               {work.summary.map((item) => (
-                <div key={item.k} style={{ borderTop: `2px solid ${C.ink}`, paddingTop: "0.75rem" }}>
-                  <div style={{ ...T.label, color: C.faint, fontSize: "0.8rem", marginBottom: "0.45rem" }}>{item.k}</div>
+                <div key={item.k} style={{ borderTop: `2px solid ${C.accent}`, paddingTop: "0.75rem" }}>
+                  <div style={{ ...T.label, color: C.accent, fontSize: "0.8rem", marginBottom: "0.45rem" }}>{item.k}</div>
                   {item.href ? (
                     <a href={item.href} target="_blank" rel="noopener noreferrer" className="ul" style={{ ...T.bodyS, color: C.ink }}>{item.v}</a>
                   ) : (

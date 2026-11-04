@@ -80,6 +80,8 @@ const C = {
   bg2: "#1a1a1a",
   paper: "#ece9e2",
   ink: "#1a1a1a",
+  /* Muted blue. #2f5d8a is 6.25:1 on #f5f4f0 and 5.77:1 on #edebe6; paper text on this blue is 6.25:1. */
+  accent: "#2f5d8a",
   mid: "#3a3a3a",
   faint: "#524e4a",
   ghost: "#524e4a",
@@ -93,6 +95,10 @@ const C = {
   ghostInv: "rgba(240,239,233,0.72)",
   hairInv: "rgba(240,239,233,0.14)"
 };
+
+if (typeof document !== "undefined") {
+  document.documentElement.style.setProperty("--accent", C.accent);
+}
 
 /* ─── Hooks ─── */
 const useInView = (threshold = 0.08, once = true) => {
@@ -188,7 +194,7 @@ const expandInnerStyle = { overflow: "hidden", minHeight: 0 };
 
 /* Generic chips & labels — used across sections */
 const Label = ({ children, dark = false, style: extra = {} }) =>
-<span style={{ ...T.label, color: dark ? C.ghostInv : C.ghost, ...extra }}>{children}</span>;
+<span style={{ ...T.label, color: dark ? C.ghostInv : C.accent, ...extra }}>{children}</span>;
 
 
 const Chip = ({ children, dark = false }) =>
@@ -233,7 +239,7 @@ const SectionHeader = ({ eyebrow, title, subtitle, dark = false, right }) =>
   display: "flex", justifyContent: "space-between", alignItems: "flex-end",
   flexWrap: "wrap", gap: "1.5rem", marginBottom: "2.75rem",
   paddingBottom: "1.35rem",
-  borderBottom: `1px solid ${dark ? C.hairInv : C.hair}`
+  borderBottom: `2px solid ${dark ? C.hairInv : C.accent}`
 }}>
     <div>
       <Fade>

@@ -25,12 +25,12 @@ const AboutSection = () => {
           </Fade>
           <Fade delay={0.06}>
             <div style={{
-              width: 1, height: 56, background: C.ink, opacity: 0.18,
+              width: 1, height: 56, background: C.accent, opacity: 0.85,
               margin: "1.25rem 0 1.75rem 0.4rem",
             }} />
           </Fade>
           <Fade delay={0.12}>
-            <div style={{ ...T.label, color: C.faint, marginBottom: "0.65rem" }}>Now</div>
+            <div style={{ ...T.label, color: C.accent, marginBottom: "0.65rem" }}>Now</div>
             <p style={{ ...T.caption, color: C.mid, margin: 0, lineHeight: 1.8 }}>
               心理系大三<br />
               預計 2028 畢業<br />
@@ -39,7 +39,7 @@ const AboutSection = () => {
             </p>
           </Fade>
           <Fade delay={0.18}>
-            <div style={{ ...T.label, color: C.faint, margin: "1.75rem 0 0.65rem" }}>Open to</div>
+            <div style={{ ...T.label, color: C.accent, margin: "1.75rem 0 0.65rem" }}>Open to</div>
             <p style={{ ...T.caption, color: C.mid, margin: 0, lineHeight: 1.8 }}>
               體驗設計相關實習<br />
               Side project<br />
@@ -104,7 +104,7 @@ const AboutSection = () => {
                 { k: "Vibe Coding", v: "和 AI 一起把點子做出來，做我自己每天會用的工具。" },
               ].map(({ k, v }) => (
                 <div key={k}>
-                  <div style={{ ...T.label, color: C.faint, marginBottom: "0.65rem" }}>{k}</div>
+                  <div style={{ ...T.label, color: C.accent, marginBottom: "0.65rem" }}>{k}</div>
                   <p style={{ ...T.caption, color: C.mid, margin: 0, fontSize: "0.85rem" }}>{v}</p>
                 </div>
               ))}
@@ -117,4 +117,48 @@ const AboutSection = () => {
   );
 };
 
+/* To add drawings: put files in assets/illustrations/ and append { src, alt } here. */
+const ILLUSTRATIONS = [];
+
+const IllustrationSection = () => {
+  const isMobile = useIsMobile();
+  const cells = ILLUSTRATIONS.length
+    ? ILLUSTRATIONS
+    : [0, 1, 2].map((i) => ({ empty: true, key: i }));
+  return (
+    <section id="illustrations" style={{
+      background: C.bg0,
+      borderTop: `1px solid ${C.hair}`,
+      padding: isMobile ? "3.5rem 1.25rem" : "5.5rem 3rem",
+    }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <Label>插畫</Label>
+        <p style={{ ...T.body, color: C.mid, margin: "0.85rem 0 1.75rem" }}>手繪插畫（整理中）</p>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: isMobile ? "repeat(3, 1fr)" : "repeat(3, minmax(0, 220px))",
+          gap: isMobile ? "0.75rem" : "1.25rem",
+        }}>
+          {cells.map((cell, i) => (
+            <div key={cell.src || cell.key || i} style={{
+              aspectRatio: "4 / 5",
+              border: `1px solid ${C.hair}`,
+              background: C.bg1,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              overflow: "hidden",
+            }}>
+              {cell.src ? (
+                <img src={cell.src} alt={cell.alt || ""} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              ) : null}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 window.AboutSection = AboutSection;
+window.IllustrationSection = IllustrationSection;

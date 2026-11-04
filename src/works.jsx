@@ -42,7 +42,7 @@ const StatRow = ({ stats }) => {
   }}>
     {stats.map((s) => (
       <div key={s.l} style={{ borderTop: `1px solid ${C.hairBold}`, paddingTop: "0.55rem" }}>
-        <div style={{ ...T.h4, color: C.ink, fontSize: "1.05rem", margin: 0 }}>{s.n}</div>
+        <div style={{ ...T.h4, color: C.accent, fontSize: "1.05rem", margin: 0 }}>{s.n}</div>
         <div style={{ ...T.label, color: C.faint, fontSize: "0.8rem", letterSpacing: "0.06em", marginTop: "0.25rem" }}>{s.l}</div>
       </div>
     ))}
