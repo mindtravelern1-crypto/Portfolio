@@ -5,59 +5,49 @@
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "theme": "warm",
   "heroAccent": "italic",
-  "grain": true,
+  "grain": false,
   "density": "comfortable"
 } /*EDITMODE-END*/;
 
 const NAV_LINKS = [
-["作品", "#works"],
-["筆記", "#notes"],
-["關於", "#about"],
-["經歷", "#experience"],
-["聯繫", "#contact"]];
-
+  ["作品", "works"],
+  ["關於", "about"],
+  ["插畫", "illustration"],
+  ["經歷", "experience"],
+  ["筆記", "notes"],
+  ["聯繫", "contact"],
+];
 
 const Nav = () => {
-  const scrollY = useScrollY();
-  const isMobile = useIsMobile();
-  const condensed = scrollY > 60;
+  const [current, setCurrent] = React.useState("works");
+  React.useEffect(() => {
+    const onScroll = () => {
+      let next = "works";
+      NAV_LINKS.forEach(([ , id]) => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < 120) next = id;
+      });
+      setCurrent(next);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  const showIllust = (window.ILLUSTRATIONS || []).length >= 3;
   return (
-    <nav style={{
-      position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      padding: condensed ? "0.9rem 1.5rem" : isMobile ? "1.1rem 1.25rem" : "1.4rem 1.5rem",
-      display: "flex", justifyContent: "space-between", alignItems: "center",
-      flexWrap: "wrap",
-      rowGap: "0.65rem",
-      background: condensed ? "rgba(245,244,240,0.92)" : "transparent",
-      backdropFilter: condensed ? "blur(14px)" : "none",
-      borderBottom: condensed ? `1px solid ${C.hair}` : "1px solid transparent",
-      transition: "all 0.4s ease"
-    }}>
-      <a href="#top" style={{
-        display: "flex", alignItems: "baseline", gap: "0.7rem",
-        textDecoration: "none", color: C.ink
-      }}>
-        <span style={{ fontFamily: "'Noto Serif TC',serif", fontWeight: 400, color: C.ink, fontSize: "15px" }}>林恩瑜</span>
-        <span style={{
-          fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontWeight: 500,
-          color: C.ink, letterSpacing: "-0.01em", fontSize: "20px"
-        }}>Anya</span>
-      </a>
-
-      <div style={{ display: "flex", gap: isMobile ? "0.95rem" : "2.5rem", alignItems: "center", flexWrap: "wrap" }}>
-        {NAV_LINKS.map(([txt, href]) =>
-        <a key={txt} href={href} style={{
-          ...T.label, color: C.faint,
-          textDecoration: "none", fontSize: "0.68rem",
-          transition: "color 0.2s ease"
-        }}
-        onMouseEnter={(e) => e.currentTarget.style.color = C.ink}
-        onMouseLeave={(e) => e.currentTarget.style.color = C.faint}>
-          {txt}</a>
-        )}
+    <nav className="nav">
+      <div className="wrap">
+        <a className="brand" href="#top">林恩瑜 <span className="latin-i">Anya</span><svg className="brand-spark" aria-hidden="true"><use href="#d-spark" /></svg></a>
+        <ul>
+          {NAV_LINKS.filter(([ , id]) => id !== "illustration" || showIllust).map(([txt, id]) => (
+            <li key={id} className={current === id ? "on" : ""}>
+              <a href={`#${id}`}>{txt}</a>
+            </li>
+          ))}
+        </ul>
       </div>
-    </nav>);
-
+    </nav>
+  );
 };
 
 const Portfolio = () => {
@@ -67,8 +57,8 @@ const Portfolio = () => {
   /* Apply theme via body attr */
   useEffect(() => {
     document.body.dataset.theme = t.theme;
-    document.body.style.background = t.theme === "dark" ? "#1a1a1a" : t.theme === "cool" ? "#fafafa" : "#f5f4f0";
-    document.body.style.color = t.theme === "dark" ? "#f0efe9" : "#1a1a1a";
+    document.body.style.background = "";
+    document.body.style.color = "";
   }, [t.theme]);
 
   /* Toggle grain */
@@ -86,10 +76,12 @@ const Portfolio = () => {
     <div id="top" style={{ position: "relative" }}>
       <Nav />
       <Hero />
+      <HeroWave />
       <WorksSection onOpenCase={setPanelWork} />
-      <NotesSection />
       <AboutSection />
+      <IllustrationSection />
       <ExperienceSection />
+      <NotesSection />
       <ContactSection />
       <Footer />
 
@@ -97,7 +89,7 @@ const Portfolio = () => {
       <CaseStudy work={panelWork} onClose={() => setPanelWork(null)} />
       }
 
-      <TweaksPanel title="Tweaks">
+      {/localhost|127\.0\.0\.1/.test(window.location.hostname) && <TweaksPanel title="Tweaks">
         <TweakSection label="主題 Theme" />
         <TweakRadio
           label="色調"
@@ -129,7 +121,7 @@ const Portfolio = () => {
         }}>
           看作品 →
         </TweakButton>
-      </TweaksPanel>
+      </TweaksPanel>}
     </div>);
 
 };

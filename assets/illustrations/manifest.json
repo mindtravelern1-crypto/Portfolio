@@ -1,0 +1,12 @@
+{
+  "_note": "Anya 的 Procreate 手繪插畫（皆為本人繪製）。排序即建議展示順序。title/year 未提供，請勿自行填寫；之後 Anya 提供再加。",
+  "items": [
+    {"id":"illust-01","src":"illust-01.webp","thumb":"illust-01-thumb.webp","fallback":"illust-01.jpg","original":"01M6KHSZGVNDZG64C7JF2GW6VA.png","w":1628,"h":1761,"tone":"light","alt":"手繪插畫：夕陽天空下穿水手服的女孩","title":null,"year":null},
+    {"id":"illust-02","src":"illust-02.webp","thumb":"illust-02-thumb.webp","fallback":"illust-02.jpg","original":"01M6KHSWHVH03E0MTKN9SNZBRX.jpg","w":1480,"h":2198,"tone":"dark","alt":"手繪插畫：深色背景中穿露背黑色洋裝的女子","title":null,"year":null},
+    {"id":"illust-03","src":"illust-03.webp","thumb":"illust-03-thumb.webp","fallback":"illust-03.jpg","original":"01M6KHVVAYVCCJ63BHFCF4YKN0.png","w":1640,"h":2360,"tone":"light","alt":"手繪插畫：白底上穿藍色洋裝的金髮女孩全身像","title":null,"year":null},
+    {"id":"illust-04","src":"illust-04.webp","thumb":"illust-04-thumb.webp","fallback":"illust-04.jpg","original":"01M6KHVPKTFFST50P2RT7XSSNF.png","w":1110,"h":2164,"tone":"mid","alt":"手繪插畫：房間裡抱著粉紅兔子的雙馬尾女孩","title":null,"year":null},
+    {"id":"illust-05","src":"illust-05.webp","thumb":"illust-05-thumb.webp","fallback":"illust-05.jpg","original":"01M6KHVYHKVZ989K447J9YH4GN.png","w":2166,"h":1640,"tone":"light","alt":"手繪插畫：布上的水果靜物","title":null,"year":null},
+    {"id":"illust-06","src":"illust-06.webp","thumb":"illust-06-thumb.webp","fallback":"illust-06.jpg","original":"01M6KHSQDZDJTP2MJ5C1EQYHDQ.png","w":1015,"h":1347,"tone":"light","alt":"手繪插畫：晴朗天空與太陽下揹著對方的情侶","title":null,"year":null,"_note":"原檔只有 1015×1347，web 版沒有放大；可請 Anya 重新匯出高解析版"},
+    {"id":"illust-07","src":"illust-07.webp","thumb":"illust-07-thumb.webp","fallback":"illust-07.jpg","original":"01M6KHW274PDRQ1C2YZSCEVTH9.png","w":2360,"h":1640,"tone":"dark","alt":"手繪插畫：黑底上的灰階茶杯習作","title":null,"year":null}
+  ]
+}

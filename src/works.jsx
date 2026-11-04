@@ -1,275 +1,112 @@
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   WORKS — editorial archive list
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* Works — split media/text cards. Copy stays in data.jsx. */
 
-const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
-  const [hover, setHover] = useState(false);
-  const rowRef = useRef(null);
-  const [c1, c2, c3] = work.palette;
-  const isMobile = useIsMobile();
+const WORK_ORDER = ["CATI", "心旅人自我探索APP", "三分鐘探索你的潛能", "讀懂自己，再選科系"];
 
-  return (
-    <Fade delay={delay}>
-      <div
-        ref={rowRef}
-        style={{
-          borderTop: `1px solid ${C.hair}`,
-          position: "relative"
-        }}>
-        
-        {/* Row header */}
-        <div
-          onClick={onToggle}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-          style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr auto" : "60px 100px 1fr auto",
-            gap: isMobile ? "1rem" : "2.5rem",
-            alignItems: "center",
-            padding: "2.5rem 1.5rem",
-            margin: "0 -1.5rem",
-            cursor: "pointer",
-            userSelect: "none",
-            background: isOpen ? "rgba(26,26,26,0.025)" : hover ? "rgba(26,26,26,0.015)" : "transparent",
-            transition: "background 0.3s ease"
-          }}>
-          
-          {/* Index — large mono */}
-          {!isMobile && <div style={{
-            ...T.mono,
-            fontSize: "0.78rem", color: C.ghost,
-            letterSpacing: "0.1em",
-            paddingTop: "0.3rem",
-            transform: hover ? "translateX(4px)" : "translateX(0)",
-            transition: "transform 0.4s cubic-bezier(.2,.8,.2,1)"
-          }}>
-            — {work.id}
-          </div>}
+const orderedWorks = () => WORK_ORDER.map((title, i) => {
+  const work = works.find((w) => w.title === title);
+  return { ...work, id: String(i + 1).padStart(2, "0") };
+});
 
-          {/* Category chip(s) */}
-          {!isMobile && <div style={{ paddingTop: "0.4rem", display: "flex", flexWrap: "wrap", gap: "0.3rem" }}>
-            {(Array.isArray(work.category) ? work.category : [work.category]).map(cat => (
-              <span key={cat} style={{
-                ...T.label, fontSize: "0.6rem",
-                color: C.faint,
-                border: `1px solid ${C.hair}`,
-                padding: "0.32rem 0.7rem",
-                letterSpacing: "0.2em",
-                whiteSpace: "nowrap"
-              }}>{cat}</span>
-            ))}
-          </div>}
-
-          {/* Title block */}
-          <div>
-            <div style={{
-              display: "flex", alignItems: "baseline", gap: "1rem", flexWrap: "wrap",
-              marginBottom: "0.45rem"
-            }}>
-              <h3 style={{
-                ...T.h2,
-
-                color: C.ink, margin: 0,
-                transition: "letter-spacing 0.4s ease",
-                letterSpacing: hover ? "0.005em" : "-0.018em", fontSize: "1.5rem", fontWeight: 500
-              }}>{work.title}</h3>
-              <span style={{
-                fontFamily: "'Cormorant Garamond','Noto Serif TC',serif",
-                fontStyle: "italic",
-                fontSize: "1rem", fontWeight: 300,
-                color: C.ghost
-              }}>{work.sub}</span>
-            </div>
-            <p style={{
-              ...T.bodyS, color: C.faint, margin: "0 0 0.5rem",
-              fontStyle: "italic",
-              maxWidth: 560
-            }}>"{work.angle}"</p>
-            <div style={{ ...T.label, color: C.ghost, fontSize: "0.6rem" }}>{work.type}</div>
-          </div>
-
-          {/* Right: year + status + arrow */}
-          <div style={{
-            display: "flex", flexDirection: "column", alignItems: "flex-end",
-            gap: "0.6rem", paddingTop: "0.2rem"
-          }}>
-            <span style={{ ...T.mono, color: C.faint, fontSize: "0.7rem" }}>{work.year}</span>
-            <StatusDot status={work.status} />
-            <div style={{
-              marginTop: "0.6rem",
-              ...T.label, color: isOpen ? C.ink : C.faint, fontSize: "0.68rem",
-              display: "flex", alignItems: "center", gap: "0.4rem",
-              transition: "color 0.2s ease"
-            }}>
-              <span>{isOpen ? "收起" : "展開"}</span>
-              <span style={{
-                display: "inline-block",
-                transition: "transform 0.4s cubic-bezier(.2,.8,.2,1)",
-                transform: isOpen ? "rotate(180deg)" : "rotate(0)"
-              }}>↓</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Expand */}
-        <div style={expandStyle(isOpen)}>
-          <div style={expandInnerStyle}>
-            <div style={{
-              borderTop: `1px solid ${C.hair}`,
-              padding: "3rem 0 3.5rem"
-            }}>
-              {/* Top row: tags + brief + CTA */}
-              <div style={{
-                display: "grid",
-                gridTemplateColumns: isMobile ? "1fr" : "200px 1fr",
-                gap: isMobile ? "1.5rem" : "3rem",
-                marginBottom: "3rem",
-                alignItems: "start"
-              }}>
-                <div>
-                  <div style={{ ...T.label, color: C.ghost, marginBottom: "1rem" }}>Brief</div>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
-                    {work.tags.map((tag) =>
-                    <span key={tag} style={{
-                      ...T.label, fontSize: "0.64rem", color: C.faint,
-                      border: `1px solid ${C.hair}`, padding: "0.25rem 0.6rem",
-                      letterSpacing: "0.18em", whiteSpace: "nowrap"
-                    }}>{tag}</span>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <p style={{ ...T.body, color: C.mid, margin: 0, maxWidth: 560, fontSize: "1rem" }}>
-                    {work.brief}
-                  </p>
-
-                  <div style={{
-                    marginTop: "2rem",
-                    display: "flex", alignItems: "center", gap: "1.75rem", flexWrap: "wrap"
-                  }}>
-                    <button
-                      className="cta"
-                      onClick={(e) => {e.stopPropagation();onOpenCase(work);}}
-                      style={{
-                        background: C.ink, color: C.bg0,
-                        border: "none",
-                        padding: "0.9rem 1.5rem",
-                        ...T.label, color: C.bg0,
-                        fontSize: "0.72rem",
-                        cursor: "pointer",
-                        transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                        letterSpacing: "0.12em"
-                      }}
-                      onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"}
-                      onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>
-                      看完整 Case Study ↗</button>
-
-                    {work.link &&
-                    <a href={work.link} target="_blank" rel="noopener noreferrer"
-                    className="ul"
-                    onClick={(e) => e.stopPropagation()}
-                    style={{ ...T.bodyS, color: C.ink, fontSize: "0.92rem", fontWeight: 500 }}>
-                      {work.linkLabel || "體驗產品"}</a>
-                    }
-                  </div>
-                </div>
-              </div>
-
-              {/* Image area — image displays at natural ratio, sized big enough so phone screenshots stay readable without cropping. */}
-              <div onClick={(e) => e.stopPropagation()} style={{
-                display: "flex", justifyContent: "center", alignItems: "center",
-                minHeight: 480,
-              }}>
-                {work.mainImage ? (
-                  <img
-                    src={work.mainImage}
-                    alt={`${work.id} · ${work.title}`}
-                    loading="lazy"
-                    style={{
-                      maxHeight: 480,
-                      maxWidth: "100%",
-                      width: "auto",
-                      height: "auto",
-                      display: "block",
-                      objectFit: "contain",
-                    }}
-                  />
-                ) : (
-                  <div style={{ width: "100%", maxWidth: 720 }}>
-                    <ImageSlot
-                      palette={work.palette}
-                      height={520}
-                      label={`${work.id} · ${work.title}`}
-                      caption="main · 主畫面"
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Fade>);
-
-};
+const cardTags = (work) => (work.tags || [])
+  .filter((tag) => tag !== "開發中" && !String(work.status || "").includes(tag))
+  .slice(0, 3);
 
 const WorksSection = ({ onOpenCase }) => {
-  const [openIds, setOpenIds] = useState(new Set());
-  const isMobile = useIsMobile();
-  const toggle = (id) => setOpenIds((prev) => {
-    const next = new Set(prev);
-    if (next.has(id)) next.delete(id);else
-    next.add(id);
-    return next;
-  });
-
+  const list = orderedWorks();
+  const cati = list[0];
+  const heart = list[1];
+  const trials = list.slice(2);
   return (
-    <section id="works" style={{
-      background: C.bg1,
-      borderTop: `1px solid ${C.hair}`,
-      padding: isMobile ? "4rem 1.25rem" : "7rem 3rem", lineHeight: "1.75"
-    }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <SectionHeader
-          eyebrow="Selected Work"
-          title="作品空間"
-          subtitle="點擊任一作品展開簡介；再點「看完整 Case Study」進入詳細設計流程。"
-          right={
-          <div style={{ textAlign: "right" }}>
-              <div style={{ ...T.mono, color: C.faint, fontSize: "0.7rem" }}>04 / works</div>
-              <div style={{ ...T.label, color: C.ghost, marginTop: "0.4rem" }}>App · Web · 商業</div>
+    <section className="sec bg-paper2" id="works" style={{ paddingTop: 88 }}>
+      <div className="wrap">
+        <div className="sec-head">
+          <div>
+            <div className="eyebrow">Selected Work</div>
+            <h2 className="h2"><span className="ul-doodle">作品<svg style={{ color: "var(--blue-500)" }} aria-hidden="true"><use href="#d-ul" /></svg></span></h2>
+          </div>
+          <p>兩個主要作品，以及兩個還在開發的試用版。</p>
+        </div>
+
+        <article className="proj">
+          <div className="media peach">
+            <img className="shot" src="assets/works/04/01-question.webp" alt="CATI 題目畫面" style={{ width: "66%", left: "6%", top: "9%", transform: "rotate(-3deg)" }} />
+            <img className="shot" src="assets/works/04/02-result-cat.webp" alt="CATI 結果頁手繪插畫" style={{ width: "70%", right: "6%", top: "30%", transform: "rotate(2deg)" }} />
+            <svg className="doodle" style={{ left: "9%", bottom: "9%", width: 34, height: 34, color: "var(--coral)" }} aria-hidden="true"><use href="#d-spark" /></svg>
+          </div>
+          <div className="txt">
+            <div className="num">{cati.id}</div>
+            <h3 className="h3">{cati.title}</h3>
+            <div className="sub">{cati.sub}</div>
+            <div className="meta">
+              <span>Side Project · 業主合作</span>
+              <span className="sep">·</span>
+              <span>{cati.type}</span>
+              <span className="status live">{cati.status}</span>
             </div>
-          } />
-        
+            <p className="small">{cati.brief}</p>
+            <div className="stats">
+              {(cati.stats || []).map((s) => (
+                <div key={s.l}><b>{s.n}</b><span>{s.l}</span></div>
+              ))}
+            </div>
+            <div className="ga">Google Analytics 由我設定。</div>
+            <div className="tags">{cardTags(cati).map((t) => <span className="tag" key={t}>{t}</span>)}</div>
+            <div className="acts">
+              <button className="btn btn-primary" onClick={() => onOpenCase(cati)}>看完整案例 →</button>
+              {cati.link && <a className="btn btn-quiet" href={cati.link} target="_blank" rel="noopener noreferrer">cat-mauve-eight.vercel.app ↗</a>}
+            </div>
+          </div>
+        </article>
 
-        <div>
-          {works.map((w, i) =>
-          <WorkRow
-            key={w.id}
-            work={w}
-            isOpen={openIds.has(w.id)}
-            onToggle={() => toggle(w.id)}
-            onOpenCase={onOpenCase}
-            delay={i * 0.05} />
+        <article className="proj">
+          <div className="txt">
+            <div className="num">{heart.id}</div>
+            <h3 className="h3">{heart.title}</h3>
+            <div className="sub">{heart.sub}</div>
+            <div className="meta">
+              <span>{heart.type}</span>
+              <span className="status">{heart.status}</span>
+            </div>
+            <p className="quote">{heart.angle}</p>
+            <p className="small">{heart.brief}</p>
+            <div className="tags">{cardTags(heart).map((t) => <span className="tag" key={t}>{t}</span>)}</div>
+            <div className="acts">
+              <button className="btn btn-primary" onClick={() => onOpenCase(heart)}>看完整案例 →</button>
+            </div>
+          </div>
+          <div className="media mist">
+            <img className="shot" src="assets/works/01/ux-thinking-board.webp" alt="心旅人 FigJam 上的 UX 思考流程" style={{ width: "92%", left: "-6%", top: "12%", transform: "rotate(-4deg)", opacity: 0.9 }} />
+            <img className="phone" src="assets/works/01/login-screen.webp" alt="心旅人登入畫面" style={{ right: "14%", top: 26 }} />
+            <span className="pin" style={{ left: "8%", bottom: 40 }}>UX 思考流程 · FigJam Board</span>
+            <svg className="doodle" style={{ right: "9%", top: 36, width: 22, height: 22, color: "var(--blue-500)" }} aria-hidden="true"><use href="#d-spark" /></svg>
+          </div>
+        </article>
 
-          )}
-          <div style={{ borderTop: `1px solid ${C.hair}` }} />
+        <div className="trials">
+          {trials.map((work) => (
+            <article className="trial" key={work.title}>
+              <div className="thumb"><img src={work.mainImage} alt={work.title} /></div>
+              <div className="in">
+                <span className="status">{work.status}</span>
+                <h3 className="h4" style={{ fontSize: 21, margin: "8px 0 4px" }}>{work.title}</h3>
+                <div className="meta" style={{ fontSize: 13, color: "var(--ink-3)", marginBottom: 10 }}>{work.type}</div>
+                <p className="small">{work.brief}</p>
+                <div className="ai"><svg style={{ width: 14, height: 14, color: "var(--blue-500)" }} aria-hidden="true"><use href="#d-spark" /></svg>與 Claude 等 AI 工具協作製作</div>
+                <div className="tags" style={{ display: "flex", gap: 8, marginTop: 16 }}>
+                  {cardTags(work).map((t) => <span className="tag neutral" key={t}>{t}</span>)}
+                </div>
+                <div className="acts" style={{ display: "flex", gap: 20, marginTop: 20, alignItems: "center" }}>
+                  <button className="btn btn-ghost" onClick={() => onOpenCase(work)}>看案例</button>
+                  {work.link && <a className="btn btn-quiet" href={work.link} target="_blank" rel="noopener noreferrer">{work.linkLabel || "看試用版"} ↗</a>}
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
-
-        <div style={{
-          marginTop: "3rem",
-          display: "flex", justifyContent: "space-between", alignItems: "baseline"
-        }}>
-          <span style={{ ...T.label, color: C.ghost, fontStyle: "italic", textTransform: "none", letterSpacing: "0.08em", fontSize: "12px" }}>
-            還在做新的東西⋯
-          </span>
-          <span style={{ ...T.mono, color: C.ghost, fontSize: "0.7rem" }}>END OF INDEX</span>
-        </div>
+        <p className="others">其他小工具：<a href="https://job-tracker-docs.vercel.app" target="_blank" rel="noopener noreferrer">職缺追蹤網站</a>、<a href="https://design-gym-ntfu.vercel.app" target="_blank" rel="noopener noreferrer">設計與繪畫訓練場</a>（自用，和 Claude 等 AI 工具一起做的）</p>
       </div>
-    </section>);
-
+    </section>
+  );
 };
 
 window.WorksSection = WorksSection;

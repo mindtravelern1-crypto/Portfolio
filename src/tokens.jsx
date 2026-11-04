@@ -21,8 +21,8 @@ const T = {
   },
   h2: {
     fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
-    fontWeight: 500,
-    fontSize: "clamp(1.55rem, 2.8vw, 2.05rem)",
+    fontWeight: 600,
+    fontSize: "clamp(1.7rem, 2.8vw, 2.25rem)",
     lineHeight: 1.25,
     letterSpacing: "-0.015em"
   },
@@ -41,48 +41,57 @@ const T = {
     letterSpacing: "-0.005em"
   },
   body: {
-    fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
+    fontFamily: "'Noto Sans TC', system-ui, sans-serif",
     fontWeight: 400,
-    fontSize: "1.02rem",
-    lineHeight: 2.05
+    fontSize: "17px",
+    lineHeight: 1.85,
+    letterSpacing: "0.02em"
   },
   bodyS: {
-    fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
+    fontFamily: "'Noto Sans TC', system-ui, sans-serif",
     fontWeight: 400,
-    fontSize: "0.92rem",
-    lineHeight: 1.95
+    fontSize: "15px",
+    lineHeight: 1.75,
+    letterSpacing: "0.02em"
   },
   caption: {
-    fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
+    fontFamily: "'Noto Sans TC', system-ui, sans-serif",
     fontWeight: 400,
-    fontSize: "0.88rem",
-    lineHeight: 1.85
+    fontSize: "15px",
+    lineHeight: 1.75
   },
   label: {
-    fontFamily: "'JetBrains Mono', ui-monospace, monospace",
-    fontWeight: 500,
-    fontSize: "0.7rem",
-    letterSpacing: "0.16em",
+    fontFamily: "'Noto Sans TC', system-ui, sans-serif",
+    fontWeight: 600,
+    fontSize: "12.5px",
+    letterSpacing: "0.2em",
     textTransform: "uppercase"
   },
   mono: {
     fontFamily: "'JetBrains Mono', ui-monospace, monospace",
     fontWeight: 400,
-    fontSize: "0.75rem",
+    fontSize: "0.8rem",
     letterSpacing: "0.06em"
   }
 };
 
 /* Colours — warm paper palette (theme variations applied via body[data-theme]) */
 const C = {
-  bg0: "#f5f4f0",
-  bg1: "#edebe6",
-  bg2: "#1a1a1a",
-  paper: "#ece9e2",
-  ink: "#1a1a1a",
-  mid: "#3a3a3a",
-  faint: "#524e4a",
-  ghost: "#6a6460",
+  bg0: "#f7f4ee",
+  bg1: "#efeae1",
+  bg2: "#24496d",
+  paper: "#f7f4ee",
+  card: "#fffdf9",
+  ink: "#1e2126",
+  accent: "#2f5d8a",
+  blue800: "#24496d",
+  blue900: "#16263a",
+  blue100: "#e3ebf3",
+  blue50: "#eff3f7",
+  coral: "#d8644f",
+  mid: "#3c3f45",
+  faint: "#6a6760",
+  ghost: "#6a6760",
   hair: "rgba(26,26,26,0.12)",
   hairSoft: "rgba(26,26,26,0.07)",
   hairBold: "rgba(26,26,26,0.22)",
@@ -93,6 +102,10 @@ const C = {
   ghostInv: "rgba(240,239,233,0.72)",
   hairInv: "rgba(240,239,233,0.14)"
 };
+
+if (typeof document !== "undefined") {
+  document.documentElement.style.setProperty("--accent", C.accent);
+}
 
 /* ─── Hooks ─── */
 const useInView = (threshold = 0.08, once = true) => {
@@ -188,7 +201,7 @@ const expandInnerStyle = { overflow: "hidden", minHeight: 0 };
 
 /* Generic chips & labels — used across sections */
 const Label = ({ children, dark = false, style: extra = {} }) =>
-<span style={{ ...T.label, color: dark ? C.ghostInv : C.ghost, ...extra }}>{children}</span>;
+<span style={{ ...T.label, color: dark ? C.ghostInv : C.accent, ...extra }}>{children}</span>;
 
 
 const Chip = ({ children, dark = false }) =>
@@ -213,7 +226,7 @@ const StatusDot = ({ status, dark = false }) => {
       color: dark ? C.inkInv : C.mid,
       fontWeight: 500,
       letterSpacing: "0.08em",
-      display: "inline-flex", alignItems: "center", gap: "0.45rem", fontSize: "0.75rem"
+      display: "inline-flex", alignItems: "center", gap: "0.45rem", fontSize: "0.8rem"
     }}>
       <span style={{
         width: 5, height: 5, borderRadius: "50%",
@@ -233,7 +246,7 @@ const SectionHeader = ({ eyebrow, title, subtitle, dark = false, right }) =>
   display: "flex", justifyContent: "space-between", alignItems: "flex-end",
   flexWrap: "wrap", gap: "1.5rem", marginBottom: "2.75rem",
   paddingBottom: "1.35rem",
-  borderBottom: `1px solid ${dark ? C.hairInv : C.hair}`
+  borderBottom: `2px solid ${dark ? C.hairInv : C.accent}`
 }}>
     <div>
       <Fade>
