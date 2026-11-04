@@ -57,8 +57,8 @@ const Portfolio = () => {
   /* Apply theme via body attr */
   useEffect(() => {
     document.body.dataset.theme = t.theme;
-    document.body.style.background = t.theme === "dark" ? "#1a1a1a" : t.theme === "cool" ? "#fafafa" : "#f5f4f0";
-    document.body.style.color = t.theme === "dark" ? "#f0efe9" : "#1a1a1a";
+    document.body.style.background = "";
+    document.body.style.color = "";
   }, [t.theme]);
 
   /* Toggle grain */

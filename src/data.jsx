@@ -17,14 +17,14 @@ const works = [
     brief: "一個幫助人找到志業方向的自我探索 App。透過「價值觀 × 興趣 × 專長」三個維度，搭配 AI 對話與日記功能，幫使用者逐漸累積對自己的了解。",
     tags: ["手繪插畫", "Figma", "UX Research"],
     palette: ["#e8d9c2", "#3a3a3a", "#1a1a1a"],
-    mainImage: (typeof window !== "undefined" && window.__resources && window.__resources.work01) || "assets/works/01/login-screen.png",
+    mainImage: (typeof window !== "undefined" && window.__resources && window.__resources.work01) || "assets/works/01/login-screen.webp",
     heroImages: [
       {
-        src: (typeof window !== "undefined" && window.__resources && window.__resources.work01) || "assets/works/01/login-screen.png",
+        src: (typeof window !== "undefined" && window.__resources && window.__resources.work01) || "assets/works/01/login-screen.webp",
         caption: "登入頁 · 心旅人主視覺",
       },
       {
-        src: (typeof window !== "undefined" && window.__resources && window.__resources.work01_board) || "assets/works/01/ux-thinking-board.png",
+        src: (typeof window !== "undefined" && window.__resources && window.__resources.work01_board) || "assets/works/01/ux-thinking-board.webp",
         caption: "UX 思考流程 · FigJam Board",
       },
     ],
@@ -104,14 +104,14 @@ const works = [
     brief: "還在開發的自我探索試用版。想讓人在三分鐘內，透過問題看見自己的潛能方向。試用版裡，單選還要多按一次「下一題」、信沒寄出卻顯示成功，這兩件正在改，也不再放不實的限時優惠。尚未正式上線，目前沒有使用者。",
     tags: ["體驗設計", "心理學", "開發中"],
     palette: ["#d6c5a8", "#2a2a2a", "#0f0f0f"],
-    mainImage: (typeof window !== "undefined" && window.__resources && window.__resources.work02) || "assets/works/02-potential.png",
+    mainImage: (typeof window !== "undefined" && window.__resources && window.__resources.work02) || "assets/works/02-potential.webp",
     // 上傳圖片後把路徑填入 heroImages，會自動切換成可左右滑動的 carousel。
     heroImages: [
-      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work02) || "assets/works/02-potential.png", caption: "00 · 首頁 · 三分鐘探索你的潛能" },
-      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work02_01) || "assets/works/02/01-question-energy.jpg", caption: "01 · 題目頁 · 能量來源（單選）" },
-      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work02_02) || "assets/works/02/02-question-achievement.jpg", caption: "02 · 題目頁 · 成就感來源（開放式）" },
-      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work02_03) || "assets/works/02/03-loading.jpg", caption: "03 · 分析中 · 交叉分析說明" },
-      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work02_04) || "assets/works/02/04-courses.jpg", caption: "04 · 推薦課程 + 聯盟連結說明" },
+      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work02) || "assets/works/02-potential.webp", caption: "00 · 首頁 · 三分鐘探索你的潛能" },
+      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work02_01) || "assets/works/02/01-question-energy.webp", caption: "01 · 題目頁 · 能量來源（單選）" },
+      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work02_02) || "assets/works/02/02-question-achievement.webp", caption: "02 · 題目頁 · 成就感來源（開放式）" },
+      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work02_03) || "assets/works/02/03-loading.webp", caption: "03 · 分析中 · 交叉分析說明" },
+      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work02_04) || "assets/works/02/04-courses.webp", caption: "04 · 推薦課程 + 聯盟連結說明" },
     ],
     chapters: [
       {
@@ -163,14 +163,14 @@ const works = [
     brief: "還在開發的高中生科系探索試用版。不問喜歡什麼科目，而是用心理學方法幫人看見自己真正在乎什麼，並規劃可放入學習歷程的報告。自己試用時，PDF 下載是空白的，在 LINE 裡打開也會出問題，這兩件還在修。尚未正式上線，目前沒有使用者。",
     tags: ["Vibe Coding", "心理學應用", "高中生", "開發中"],
     palette: ["#c8b89a", "#3d2f1d", "#1a1a1a"],
-    mainImage: (typeof window !== "undefined" && window.__resources && window.__resources.work03) || "assets/works/03-major.png",
+    mainImage: (typeof window !== "undefined" && window.__resources && window.__resources.work03) || "assets/works/03-major.webp",
     heroImages: [
-      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work03) || "assets/works/03-major.png", caption: "00 · Landing · 讀懂自己，再選科系" },
-      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work03_01) || "assets/works/03/01-intro.png", caption: "01 · 在開始之前（暖身頁）" },
-      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work03_02) || "assets/works/03/02-ranking.png", caption: "02 · 認知風格（排序題）" },
-      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work03_03) || "assets/works/03/03-allocation.png", caption: "03 · 生活價值觀（點數分配題）" },
-      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work03_04) || "assets/works/03/04-loading.png", caption: "04 · 分析中 · 心理學框架交叉分析" },
-      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work03_05) || "assets/works/03/05-report-chapters.png", caption: "05 · 完整探索報告（學習歷程版 PDF）" },
+      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work03) || "assets/works/03-major.webp", caption: "00 · Landing · 讀懂自己，再選科系" },
+      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work03_01) || "assets/works/03/01-intro.webp", caption: "01 · 在開始之前（暖身頁）" },
+      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work03_02) || "assets/works/03/02-ranking.webp", caption: "02 · 認知風格（排序題）" },
+      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work03_03) || "assets/works/03/03-allocation.webp", caption: "03 · 生活價值觀（點數分配題）" },
+      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work03_04) || "assets/works/03/04-loading.webp", caption: "04 · 分析中 · 心理學框架交叉分析" },
+      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work03_05) || "assets/works/03/05-report-chapters.webp", caption: "05 · 完整探索報告（學習歷程版 PDF）" },
     ],
     chapters: [
       {
@@ -236,12 +236,12 @@ const works = [
       { k: "連結", v: "cat-mauve-eight.vercel.app", href: "https://cat-mauve-eight.vercel.app" },
     ],
     palette: ["#e0d2b8", "#5a4a2f", "#1a1a1a"],
-    mainImage: (typeof window !== "undefined" && window.__resources && window.__resources.work04) || "assets/works/04-cat.png",
+    mainImage: (typeof window !== "undefined" && window.__resources && window.__resources.work04) || "assets/works/04-cat.webp",
     heroImages: [
-      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work04) || "assets/works/04-cat.png", caption: "00 · CATI · 首頁主視覺" },
-      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work04_01) || "assets/works/04/01-question.png", caption: "01 · 題目頁 · 具體情境式選項（貓掌印 icon · 音樂開關）" },
-      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work04_02) || "assets/works/04/02-result-cat.png", caption: "02 · 結果頁 · 手繪貓咪品種對應與性格雷達" },
-      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work04_03) || "assets/works/04/03-result-traits.png", caption: "03 · 結果頁 · 性格描述、技能點與天敵" },
+      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work04) || "assets/works/04-cat.webp", caption: "00 · CATI · 首頁主視覺" },
+      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work04_01) || "assets/works/04/01-question.webp", caption: "01 · 題目頁 · 具體情境式選項（貓掌印 icon · 音樂開關）" },
+      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work04_02) || "assets/works/04/02-result-cat.webp", caption: "02 · 結果頁 · 手繪貓咪品種對應與性格雷達" },
+      { src: (typeof window !== "undefined" && window.__resources && window.__resources.work04_03) || "assets/works/04/03-result-traits.webp", caption: "03 · 結果頁 · 性格描述、技能點與天敵" },
     ],
     chapters: [
       {

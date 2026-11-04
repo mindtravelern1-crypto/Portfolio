@@ -62,33 +62,30 @@ const CaseStudy = ({ work, onClose }) => {
       {/* Sticky top bar */}
       <div style={{
         position: "sticky", top: 0, zIndex: 20,
-        background: "rgba(245,244,240,0.92)",
+        background: "rgba(247,244,238,0.92)",
         backdropFilter: "blur(14px)",
         borderBottom: `1px solid ${C.hair}`,
-        padding: isMobile ? "0.85rem 1.15rem" : "1.1rem 2.5rem",
+        padding: isMobile ? "0.4rem 1.15rem" : "0.55rem 2.5rem",
         display: "flex", alignItems: "center", justifyContent: "space-between",
         flexWrap: "wrap",
-        gap: "0.55rem 1rem",
+        gap: "0.35rem 1rem",
+        minHeight: 68,
       }}>
         <button onClick={onClose} style={{
           background: "none", border: "none", cursor: "pointer",
-          ...T.label, color: C.faint, fontSize: "0.66rem",
-          display: "inline-flex", alignItems: "center", gap: "0.55rem",
-          padding: 0,
-          transition: "color 0.25s ease",
-        }}
-          onMouseEnter={e => e.currentTarget.style.color = C.ink}
-          onMouseLeave={e => e.currentTarget.style.color = C.faint}
-        >
-          <span style={{ fontSize: "0.85rem" }}>←</span> 返回作品集
+          fontFamily: T.body.fontFamily, fontSize: "15px", color: C.ink,
+          display: "inline-flex", alignItems: "center", gap: "0.45rem",
+          minHeight: 44, padding: "8px 4px",
+        }}>
+          <span aria-hidden="true">←</span> 返回作品集
         </button>
 
         <div style={{ display: "flex", alignItems: "center", gap: "1.25rem" }}>
-          <span style={{ ...T.label, color: C.ghost }}>{work.id} · Case Study</span>
+          <span style={{ ...T.bodyS, color: C.faint }}>{work.id} · 案例</span>
           {work.link && (
             <a href={work.link} target="_blank" rel="noopener noreferrer"
-              className="ul"
-              style={{ ...T.bodyS, color: C.ink, fontSize: "0.82rem" }}
+              className="ul cs-link"
+              style={{ ...T.bodyS, color: C.ink }}
             >{work.linkLabel || "體驗產品"} ↗</a>
           )}
         </div>
@@ -101,13 +98,13 @@ const CaseStudy = ({ work, onClose }) => {
         position: "relative",
       }}>
         {/* Background watermark */}
-        <div aria-hidden style={{
-          position: "absolute", right: "2rem", top: "1rem",
+        <div aria-hidden className="cs-watermark" style={{
+          position: "absolute", right: 0, top: 0,
           fontFamily: "'Cormorant Garamond',serif",
-          fontStyle: "italic", fontWeight: 300,
-          fontSize: "clamp(8rem, 16vw, 14rem)",
-          color: "rgba(26,26,26,0.04)",
-          lineHeight: 0.9,
+          fontStyle: "italic", fontWeight: 500,
+          fontSize: "clamp(5rem, 10vw, 9rem)",
+          color: "rgba(30,33,38,0.05)",
+          lineHeight: 0.85, maxWidth: "42%", overflow: "hidden",
           userSelect: "none", pointerEvents: "none",
         }}>{work.id}</div>
 
@@ -121,20 +118,15 @@ const CaseStudy = ({ work, onClose }) => {
           }}>
             {/* 主類別 chip */}
             {(Array.isArray(work.category) ? work.category : [work.category]).map(cat => (
-              <span key={cat} style={{
-                ...T.label, color: C.faint,
-                border: `1px solid ${C.hairBold}`,
-                padding: "0.28rem 0.65rem",
-                fontSize: "0.8rem", letterSpacing: "0.08em"
-              }}>{cat}</span>
+              <span key={cat} className="tag">{cat}</span>
             ))}
-            <span style={{ ...T.mono, color: C.faint, fontSize: "0.8rem" }}>·</span>
-            <span style={{ ...T.mono, color: C.faint, fontSize: "0.8rem" }}>{work.year}</span>
-            <span style={{ ...T.mono, color: C.faint, fontSize: "0.8rem" }}>·</span>
-            <span style={{ ...T.label, color: C.faint, fontSize: "0.8rem", letterSpacing: "0.08em" }}>{work.type}</span>
-            <span style={{ ...T.mono, color: C.faint, fontSize: "0.8rem" }}>·</span>
+            <span style={{ ...T.bodyS, color: C.faint }}>·</span>
+            <span style={{ ...T.bodyS, color: C.faint }}>{work.year}</span>
+            <span style={{ ...T.bodyS, color: C.faint }}>·</span>
+            <span style={{ ...T.bodyS, color: C.faint }}>{work.type}</span>
+            <span style={{ ...T.bodyS, color: C.faint }}>·</span>
             {/* 狀態 */}
-            <StatusDot status={work.status} />
+            <span className={String(work.status).includes("已上線") ? "status live" : "status"}>{work.status}</span>
           </div>
 
           {/* Title */}
@@ -142,6 +134,7 @@ const CaseStudy = ({ work, onClose }) => {
             <div>
               <h1 style={{
                 ...T.h1,
+                fontWeight: 600,
                 fontSize: "clamp(2.2rem, 4.4vw, 3.4rem)",
                 color: C.ink, margin: "0 0 0.6rem",
                 opacity: 0, animation: "fup 0.9s ease 0.25s forwards",
@@ -166,11 +159,10 @@ const CaseStudy = ({ work, onClose }) => {
           }}>
             <p style={{
               fontFamily: "'Noto Serif TC',serif",
-              fontStyle: "italic", fontWeight: 300,
+              fontStyle: "normal", fontWeight: 500,
               fontSize: "clamp(1.05rem, 1.85vw, 1.35rem)",
-              lineHeight: 1.6, color: C.ink,
+              lineHeight: 1.6, color: C.blue800,
               margin: 0,
-              letterSpacing: "-0.005em",
             }}>"{work.angle}"</p>
           </div>
 
@@ -183,18 +175,12 @@ const CaseStudy = ({ work, onClose }) => {
           }}>{work.brief}</p>
 
           {Array.isArray(work.summary) && work.summary.length > 0 && (
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
-              gap: "1.25rem",
-              maxWidth: 920,
-              margin: "0 0 2.5rem",
-            }}>
+            <div className="cs-summary">
               {work.summary.map((item) => (
                 <div key={item.k} style={{ borderTop: `2px solid ${C.accent}`, paddingTop: "0.75rem" }}>
                   <div style={{ ...T.label, color: C.accent, fontSize: "0.8rem", marginBottom: "0.45rem" }}>{item.k}</div>
                   {item.href ? (
-                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="ul" style={{ ...T.bodyS, color: C.ink }}>{item.v}</a>
+                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="ul cs-link" style={{ ...T.bodyS, color: C.ink }}>{item.v}</a>
                   ) : (
                     <p style={{ ...T.bodyS, color: C.ink, margin: 0 }}>{item.v}</p>
                   )}
@@ -228,22 +214,11 @@ const CaseStudy = ({ work, onClose }) => {
       </div>
 
       {/* Main content: sticky TOC + chapters */}
-      <div style={{
-        maxWidth: 1200, margin: "0 auto",
-        padding: "3rem 1.5rem 6rem",
-        display: "grid",
-        gridTemplateColumns: typeof window !== "undefined" && window.innerWidth < 768 ? "1fr" : "200px 1fr",
-        gap: "4rem",
-        alignItems: "start",
-      }}>
+      <div className="cs-layout">
         {/* Sticky TOC */}
-        <aside style={{
-          position: "sticky", top: "5rem",
-          paddingTop: "2rem",
-          borderTop: `1px solid ${C.hair}`,
-        }}>
-          <div style={{ ...T.label, color: C.ghost, marginBottom: "1.25rem" }}>
-            Contents
+        <aside className="cs-toc">
+          <div style={{ ...T.label, color: C.accent, marginBottom: "0.75rem" }}>
+            目錄
           </div>
           <nav style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
             {work.chapters.map((ch, i) => {
@@ -255,19 +230,20 @@ const CaseStudy = ({ work, onClose }) => {
                   style={{
                     all: "unset", cursor: "pointer",
                     display: "grid",
-                    gridTemplateColumns: "26px 1fr",
+                    gridTemplateColumns: "28px 1fr",
                     gap: "0.5rem",
-                    alignItems: "baseline",
-                    padding: "0.4rem 0",
+                    alignItems: "center",
+                    minHeight: 44,
+                    padding: "4px 0",
                     transition: "transform 0.3s ease",
                     transform: active ? "translateX(4px)" : "translateX(0)",
                   }}
                 >
-                  <span style={{ ...T.mono, color: active ? C.ink : C.faint, fontSize: "0.72rem" }}>
+                  <span style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", color: active ? C.accent : C.faint, fontSize: "16px" }}>
                     {ch.n}
                   </span>
                   <span style={{
-                    ...T.bodyS, color: active ? C.ink : C.faint, fontSize: "0.92rem", fontWeight: active ? 500 : 400,
+                    ...T.bodyS, color: active ? C.ink : C.mid, fontSize: "15px", fontWeight: active ? 500 : 400,
                     borderBottom: active ? `1px solid ${C.ink}` : "1px solid transparent",
                     paddingBottom: "0.08rem", display: "inline-block",
                     transition: "border-color 0.3s ease",
@@ -281,14 +257,10 @@ const CaseStudy = ({ work, onClose }) => {
 
           {/* Tags below TOC */}
           <div style={{ marginTop: "2.5rem", paddingTop: "1.5rem", borderTop: `1px solid ${C.hair}` }}>
-            <div style={{ ...T.label, color: C.ghost, marginBottom: "0.8rem" }}>Tags</div>
+            <div style={{ ...T.label, color: C.accent, marginBottom: "0.8rem" }}>標籤</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
               {work.tags.map(t => (
-                <span key={t} style={{
-                  ...T.label, fontSize: "0.64rem", color: C.faint,
-                  border: `1px solid ${C.hair}`, padding: "0.22rem 0.5rem",
-                  letterSpacing: "0.18em",
-                }}>{t}</span>
+                <span key={t} className="tag">{t}</span>
               ))}
             </div>
           </div>
@@ -296,10 +268,10 @@ const CaseStudy = ({ work, onClose }) => {
           {/* Figma link in sidebar */}
           {work.figma && (
             <div style={{ marginTop: "2rem", paddingTop: "1.5rem", borderTop: `1px solid ${C.hair}` }}>
-              <div style={{ ...T.label, color: C.ghost, marginBottom: "0.6rem" }}>FigJam</div>
+              <div style={{ ...T.label, color: C.accent, marginBottom: "0.35rem" }}>FigJam</div>
               <a href={work.figma} target="_blank" rel="noopener noreferrer"
-                className="ul"
-                style={{ ...T.bodyS, color: C.ink, fontSize: "0.82rem" }}
+                className="ul cs-link"
+                style={{ ...T.bodyS, color: C.ink }}
               >看完整 FigJam ↗</a>
             </div>
           )}
@@ -316,52 +288,24 @@ const CaseStudy = ({ work, onClose }) => {
             marginTop: "5rem", paddingTop: "3rem",
             borderTop: `1px solid ${C.hairBold}`,
           }}>
-            <div style={{ ...T.label, color: C.ghost, marginBottom: "1rem" }}>End of Case</div>
             <p style={{
-              fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic",
+              fontFamily: "'Noto Serif TC',serif", fontStyle: "normal",
               fontSize: "clamp(1.15rem, 2vw, 1.5rem)",
-              color: C.ink, lineHeight: 1.55, margin: "0 0 2.5rem",
-              fontWeight: 400,
+              color: C.blue800, lineHeight: 1.55, margin: "0 0 2rem",
+              fontWeight: 500,
             }}>
               "{work.angle}"
             </p>
             <div style={{ display: "flex", gap: "2rem", alignItems: "center", flexWrap: "wrap" }}>
               {work.link && (
-                <a href={work.link} target="_blank" rel="noopener noreferrer" className="cta"
-                  style={{
-                    background: C.ink, color: C.bg0,
-                    padding: "0.9rem 1.5rem",
-                    ...T.label, color: C.bg0,
-                    fontSize: "0.72rem", letterSpacing: "0.12em",
-                    textDecoration: "none",
-                    transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                    display: "inline-block",
-                  }}
-                  onMouseEnter={e => e.currentTarget.style.transform = "translateY(-2px)"}
-                  onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
+                <a href={work.link} target="_blank" rel="noopener noreferrer" className="btn btn-primary"
                 >{work.linkLabel || "前往體驗"} ↗</a>
               )}
               {work.figma && (
-                <a href={work.figma} target="_blank" rel="noopener noreferrer" className="cta"
-                  style={{
-                    background: C.ink, color: C.bg0,
-                    padding: "0.9rem 1.5rem",
-                    ...T.label, color: C.bg0,
-                    fontSize: "0.72rem", letterSpacing: "0.12em",
-                    textDecoration: "none",
-                    transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                    display: "inline-block",
-                  }}
-                  onMouseEnter={e => e.currentTarget.style.transform = "translateY(-2px)"}
-                  onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
+                <a href={work.figma} target="_blank" rel="noopener noreferrer" className="btn btn-ghost"
                 >在 FigJam 看完整設計思考 ↗</a>
               )}
-              <button onClick={onClose} className="ul" style={{
-                background: "none", border: "none", padding: 0,
-                ...T.bodyS, color: C.faint, fontSize: "0.88rem",
-                cursor: "pointer",
-                paddingBottom: "0.18rem",
-              }}>返回作品集</button>
+              <button onClick={onClose} className="btn btn-quiet" style={{ background: "none", border: "none", cursor: "pointer" }}>返回作品集</button>
             </div>
           </div>
         </article>
@@ -594,9 +538,8 @@ const Chapter = ({ chapter: ch, idx, palette, workId }) => {
               transition: `opacity 0.7s ease ${0.15 + i * 0.1}s, transform 0.7s ease ${0.15 + i * 0.1}s`,
             }}>
               <span style={{
-                ...T.mono, color: C.ghost,
-                fontSize: "0.72rem",
-                fontFeatureSettings: "'tnum'",
+                fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", color: C.accent,
+                fontSize: "18px",
               }}>
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -630,26 +573,21 @@ const Chapter = ({ chapter: ch, idx, palette, workId }) => {
         )}
         <div style={{ marginTop: "1.5rem" }}>
           {ch.decisions.map((d, i) => (
-            <div key={i} style={{
-              display: "grid",
-              gridTemplateColumns: isMobile ? "1fr" : "36px 1fr 1.2fr",
-              gap: "2rem",
-              padding: "2rem 0",
-              borderBottom: `1px solid ${C.hair}`,
+            <div key={i} className="cs-decision" style={{
               opacity: inView ? 1 : 0,
               transform: inView ? "none" : "translateY(12px)",
               transition: `opacity 0.7s ease ${0.15 + i * 0.1}s, transform 0.7s ease ${0.15 + i * 0.1}s`,
             }}>
-              <span style={{ ...T.mono, color: C.faint, fontSize: "0.82rem", paddingTop: "0.25rem", fontWeight: 500 }}>
+              <span style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", color: C.accent, fontSize: "18px" }}>
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h4 style={{
                 ...T.h4,
-                fontSize: "clamp(1rem, 1.5vw, 1.15rem)",
+                fontSize: "clamp(1.05rem, 1.5vw, 1.2rem)",
                 color: C.ink, margin: 0,
-                fontWeight: 400,
+                fontWeight: 600,
               }}>{d.d}</h4>
-              <p style={{ ...T.bodyS, color: C.mid, margin: 0 }}>{d.r}</p>
+              <p className="cs-why" style={{ ...T.bodyS, color: C.mid, margin: 0 }}>{d.r}</p>
             </div>
           ))}
         </div>
@@ -800,16 +738,8 @@ const HeroCarousel = ({ images, palette, workId, title }) => {
         }}
       >
         {images.map((im, i) => (
-          <div key={i} data-slide={i} style={{
-            flex: "0 0 100%",
-            scrollSnapAlign: "start",
-            position: "relative",
-            background: "transparent",
-            padding: "8px 64px 0",
-            boxSizing: "border-box",
-            display: "flex", flexDirection: "column", alignItems: "center",
-          }}>
-            <div style={{
+          <div key={i} data-slide={i} className="hc-slide">
+            <div className="cs-hero-img" style={{
               height: 480,
               width: "100%",
               display: "flex", alignItems: "center", justifyContent: "center",
@@ -844,17 +774,11 @@ const HeroCarousel = ({ images, palette, workId, title }) => {
             {im.caption && (
               <div style={{
                 ...T.bodyS,
-                fontSize: "0.92rem",
                 color: C.mid,
-                fontStyle: "italic",
-                fontFamily: "'Cormorant Garamond','Noto Serif TC',serif",
-                fontWeight: 400,
-                letterSpacing: "0.01em",
                 textAlign: "center",
-                marginTop: "1.5rem",
+                marginTop: "1.25rem",
                 marginBottom: "0.4rem",
                 maxWidth: 640,
-                lineHeight: 1.55,
               }}>{im.caption}</div>
             )}
           </div>
@@ -865,7 +789,7 @@ const HeroCarousel = ({ images, palette, workId, title }) => {
       {total > 1 && (
         <>
           <button
-            aria-label="previous"
+            aria-label="上一張"
             onClick={(e) => { e.stopPropagation(); go(idx - 1); }}
             disabled={idx === 0}
             style={{
@@ -881,7 +805,7 @@ const HeroCarousel = ({ images, palette, workId, title }) => {
               zIndex: 5,
             }}>←</button>
           <button
-            aria-label="next"
+            aria-label="下一張"
             onClick={(e) => { e.stopPropagation(); go(idx + 1); }}
             disabled={idx === total - 1}
             style={{
@@ -908,19 +832,14 @@ const HeroCarousel = ({ images, palette, workId, title }) => {
           {images.map((_, i) => (
             <button
               key={i}
-              aria-label={`slide ${i + 1}`}
+              className={i === idx ? "hc-dot on" : "hc-dot"}
+              aria-label={`第 ${i + 1} 張`}
+              aria-current={i === idx ? "true" : undefined}
               onClick={() => go(i)}
-              style={{
-                all: "unset", cursor: "pointer",
-                width: i === idx ? 24 : 8, height: 6,
-                borderRadius: 3,
-                background: i === idx ? C.ink : "rgba(26,26,26,0.2)",
-                transition: "width 0.3s ease, background 0.3s ease",
-              }}
-            />
+            ><i style={i === idx ? { width: 24, background: C.ink } : undefined} /></button>
           ))}
         </div>
-        <span style={{ ...T.mono, color: C.ghost, fontSize: "0.72rem", letterSpacing: "0.14em" }}>
+        <span style={{ ...T.bodyS, color: C.faint, fontSize: "13px" }}>
           {String(idx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
         </span>
       </div>

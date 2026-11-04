@@ -29,8 +29,8 @@ const WorksSection = ({ onOpenCase }) => {
 
         <article className="proj">
           <div className="media peach">
-            <img className="shot" src="assets/works/04/01-question.png" alt="" style={{ width: "66%", left: "6%", top: "9%", transform: "rotate(-3deg)" }} />
-            <img className="shot" src="assets/works/04/02-result-cat.png" alt="" style={{ width: "70%", right: "6%", top: "30%", transform: "rotate(2deg)" }} />
+            <img className="shot" src="assets/works/04/01-question.webp" alt="CATI 題目畫面" style={{ width: "66%", left: "6%", top: "9%", transform: "rotate(-3deg)" }} />
+            <img className="shot" src="assets/works/04/02-result-cat.webp" alt="CATI 結果頁手繪插畫" style={{ width: "70%", right: "6%", top: "30%", transform: "rotate(2deg)" }} />
             <svg className="doodle" style={{ left: "9%", bottom: "9%", width: 34, height: 34, color: "var(--coral)" }} aria-hidden="true"><use href="#d-spark" /></svg>
           </div>
           <div className="txt">
@@ -75,8 +75,8 @@ const WorksSection = ({ onOpenCase }) => {
             </div>
           </div>
           <div className="media mist">
-            <img className="shot" src="assets/works/01/ux-thinking-board.png" alt="" style={{ width: "92%", left: "-6%", top: "12%", transform: "rotate(-4deg)", opacity: 0.9 }} />
-            <img className="phone" src="assets/works/01/login-screen.png" alt="" style={{ right: "14%", top: 26 }} />
+            <img className="shot" src="assets/works/01/ux-thinking-board.webp" alt="心旅人 FigJam 上的 UX 思考流程" style={{ width: "92%", left: "-6%", top: "12%", transform: "rotate(-4deg)", opacity: 0.9 }} />
+            <img className="phone" src="assets/works/01/login-screen.webp" alt="心旅人登入畫面" style={{ right: "14%", top: 26 }} />
             <span className="pin" style={{ left: "8%", bottom: 40 }}>UX 思考流程 · FigJam Board</span>
             <svg className="doodle" style={{ right: "9%", top: 36, width: 22, height: 22, color: "var(--blue-500)" }} aria-hidden="true"><use href="#d-spark" /></svg>
           </div>
@@ -85,7 +85,7 @@ const WorksSection = ({ onOpenCase }) => {
         <div className="trials">
           {trials.map((work) => (
             <article className="trial" key={work.title}>
-              <div className="thumb"><img src={work.mainImage} alt="" /></div>
+              <div className="thumb"><img src={work.mainImage} alt={work.title} /></div>
               <div className="in">
                 <span className="status">{work.status}</span>
                 <h3 className="h4" style={{ fontSize: 21, margin: "8px 0 4px" }}>{work.title}</h3>
@@ -96,8 +96,8 @@ const WorksSection = ({ onOpenCase }) => {
                   {cardTags(work).map((t) => <span className="tag neutral" key={t}>{t}</span>)}
                 </div>
                 <div className="acts" style={{ display: "flex", gap: 20, marginTop: 20, alignItems: "center" }}>
-                  <button className="btn btn-ghost" style={{ padding: "10px 20px" }} onClick={() => onOpenCase(work)}>看案例</button>
-                  {work.link && <a className="btn btn-quiet" style={{ padding: "10px 2px" }} href={work.link} target="_blank" rel="noopener noreferrer">{work.linkLabel || "看試用版"} ↗</a>}
+                  <button className="btn btn-ghost" onClick={() => onOpenCase(work)}>看案例</button>
+                  {work.link && <a className="btn btn-quiet" href={work.link} target="_blank" rel="noopener noreferrer">{work.linkLabel || "看試用版"} ↗</a>}
                 </div>
               </div>
             </article>

@@ -10,28 +10,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <!-- Code-referenced assets (used in JSX as window.__resources[id]) -->
-  <meta name="ext-resource-dependency" content="assets/works/01/login-screen.png" data-resource-id="work01" />
-  <meta name="ext-resource-dependency" content="assets/works/01/ux-thinking-board.png" data-resource-id="work01_board" />
-  <meta name="ext-resource-dependency" content="assets/works/02-potential.png" data-resource-id="work02" />
-  <meta name="ext-resource-dependency" content="assets/works/02/01-question-energy.jpg" data-resource-id="work02_01" />
-  <meta name="ext-resource-dependency" content="assets/works/02/02-question-achievement.jpg" data-resource-id="work02_02" />
-  <meta name="ext-resource-dependency" content="assets/works/02/03-loading.jpg" data-resource-id="work02_03" />
-  <meta name="ext-resource-dependency" content="assets/works/02/04-courses.jpg" data-resource-id="work02_04" />
-  <meta name="ext-resource-dependency" content="assets/works/03-major.png"     data-resource-id="work03" />
-  <meta name="ext-resource-dependency" content="assets/works/03/01-intro.png" data-resource-id="work03_01" />
-  <meta name="ext-resource-dependency" content="assets/works/03/02-ranking.png" data-resource-id="work03_02" />
-  <meta name="ext-resource-dependency" content="assets/works/03/03-allocation.png" data-resource-id="work03_03" />
-  <meta name="ext-resource-dependency" content="assets/works/03/04-loading.png" data-resource-id="work03_04" />
-  <meta name="ext-resource-dependency" content="assets/works/03/05-report-chapters.png" data-resource-id="work03_05" />
-  <meta name="ext-resource-dependency" content="assets/works/04-cat.png"       data-resource-id="work04" />
-  <meta name="ext-resource-dependency" content="assets/works/04/01-question.png" data-resource-id="work04_01" />
-  <meta name="ext-resource-dependency" content="assets/works/04/02-result-cat.png" data-resource-id="work04_02" />
-  <meta name="ext-resource-dependency" content="assets/works/04/03-result-traits.png" data-resource-id="work04_03" />
+  <meta name="ext-resource-dependency" content="assets/works/01/login-screen.webp" data-resource-id="work01" />
+  <meta name="ext-resource-dependency" content="assets/works/01/ux-thinking-board.webp" data-resource-id="work01_board" />
+  <meta name="ext-resource-dependency" content="assets/works/02-potential.webp" data-resource-id="work02" />
+  <meta name="ext-resource-dependency" content="assets/works/02/01-question-energy.webp" data-resource-id="work02_01" />
+  <meta name="ext-resource-dependency" content="assets/works/02/02-question-achievement.webp" data-resource-id="work02_02" />
+  <meta name="ext-resource-dependency" content="assets/works/02/03-loading.webp" data-resource-id="work02_03" />
+  <meta name="ext-resource-dependency" content="assets/works/02/04-courses.webp" data-resource-id="work02_04" />
+  <meta name="ext-resource-dependency" content="assets/works/03-major.webp"     data-resource-id="work03" />
+  <meta name="ext-resource-dependency" content="assets/works/03/01-intro.webp" data-resource-id="work03_01" />
+  <meta name="ext-resource-dependency" content="assets/works/03/02-ranking.webp" data-resource-id="work03_02" />
+  <meta name="ext-resource-dependency" content="assets/works/03/03-allocation.webp" data-resource-id="work03_03" />
+  <meta name="ext-resource-dependency" content="assets/works/03/04-loading.webp" data-resource-id="work03_04" />
+  <meta name="ext-resource-dependency" content="assets/works/03/05-report-chapters.webp" data-resource-id="work03_05" />
+  <meta name="ext-resource-dependency" content="assets/works/04-cat.webp"       data-resource-id="work04" />
+  <meta name="ext-resource-dependency" content="assets/works/04/01-question.webp" data-resource-id="work04_01" />
+  <meta name="ext-resource-dependency" content="assets/works/04/02-result-cat.webp" data-resource-id="work04_02" />
+  <meta name="ext-resource-dependency" content="assets/works/04/03-result-traits.webp" data-resource-id="work04_03" />
 
   <!-- Splash thumbnail (shown while bundle unpacks + no-JS fallback) -->
-  <template id="__bundler_thumbnail" data-bg-color="#f5f4f0">
+  <template id="__bundler_thumbnail" data-bg-color="#f7f4ee">
     <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-      <rect width="1200" height="800" fill="#f5f4f0" />
+      <rect width="1200" height="800" fill="#f7f4ee" />
       <text x="80" y="200" font-family="Cormorant Garamond, Georgia, serif" font-style="italic" font-size="160" font-weight="400" fill="#1a1a1a">Anya</text>
       <text x="80" y="270" font-family="JetBrains Mono, monospace" font-size="36" fill="#666" letter-spacing="12">林恩瑜  ·  PORTFOLIO</text>
       <line x1="80" y1="340" x2="320" y2="340" stroke="#1a1a1a" stroke-width="2" />
@@ -123,16 +123,10 @@
       transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
     }
     .ul:hover { color: var(--accent, #2f5d8a) !important; border-bottom-color: var(--accent, #2f5d8a); background-color: transparent; }
-    a:focus-visible, button:focus-visible {
+    .cta:hover { box-shadow: 0 8px 18px rgba(26,26,26,0.18); }
+    a:focus-visible, button:focus-visible, .art-mat:focus-visible, .c-row:focus-visible {
       outline: 2px solid var(--accent, #2f5d8a) !important;
       outline-offset: 3px;
-    }
-    .cta:hover { box-shadow: 0 8px 18px rgba(26,26,26,0.18); }
-    #notes a:focus-visible, #notes button:focus-visible {
-      outline-color: #f0efe9 !important;
-    }
-    body[data-theme="dark"] :focus-visible {
-      outline-color: #f0efe9 !important;
     }
 
     /* Custom scrollbar for case study */

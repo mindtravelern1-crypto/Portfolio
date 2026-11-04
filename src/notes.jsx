@@ -3,7 +3,7 @@ const NoteCard = ({ note, isOpen, onToggle }) => (
     <span className="tag">{note.type}</span>
     <h3 className="h4">{note.title}</h3>
     <p style={{ whiteSpace: "pre-line" }}>{isOpen ? note.full : note.excerpt}</p>
-    <button className="more" onClick={onToggle} style={{ background: "none", border: "none", padding: 0, textAlign: "left", cursor: "pointer" }}>
+    <button className="more" onClick={onToggle}>
       {isOpen ? "收起" : "讀全文 →"}
     </button>
     {note.link && isOpen && (
