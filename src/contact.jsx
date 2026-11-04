@@ -6,12 +6,13 @@ const CONTACTS = [
 
 const ContactSection = () => (
   <section className="contact" id="contact">
-    <div className="wrap grid">
+    <div className="wrap">
+      <div className="eyebrow">Contact</div>
+      <h2 className="h2"><span className="contact-l1">謝謝你看到這裡。</span><span className="contact-l2">如果我的作品讓你有些想法，<span className="contact-rest">很想聽聽你的意見。</span></span></h2>
+      <div className="grid">
       <div>
-        <div className="eyebrow">Contact</div>
-        <h2 className="h2">如果你也在想這些事，<br />歡迎來聊聊。</h2>
-        <p>對心理學 × 設計 × HCI、自我探索、自我實現這類問題有共鳴的，或是想聊聊體驗設計相關實習，都歡迎寫信給我。</p>
-        <a className="btn btn-light" style={{ marginTop: 30 }} href="mailto:enyulin362@gmail.com">寫信給我 →</a>
+        <p>如果你對心理學 × 設計 × HCI、自我探索或自我實現有什麼想{"\u2060"}法，或是想聊聊體驗設計相關實習，歡迎寫信告訴我。</p>
+        <a className="btn btn-light" href="mailto:enyulin362@gmail.com">寫信給我 →</a>
       </div>
       <div>
         {CONTACTS.map(([lbl, val, href]) => (
@@ -21,6 +22,7 @@ const ContactSection = () => (
             <span>↗</span>
           </a>
         ))}
+      </div>
       </div>
     </div>
   </section>
