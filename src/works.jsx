@@ -1,275 +1,163 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   WORKS — editorial archive list
+   WORKS — featured cards, then smaller trials
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-const WorkRow = ({ work, isOpen, onToggle, onOpenCase, delay = 0 }) => {
-  const [hover, setHover] = useState(false);
-  const rowRef = useRef(null);
-  const [c1, c2, c3] = work.palette;
+const WORK_ORDER = ["CATI", "心旅人自我探索APP", "三分鐘探索你的潛能", "讀懂自己，再選科系"];
+
+const orderedWorks = () => WORK_ORDER.map((title, i) => {
+  const work = works.find((w) => w.title === title);
+  return { ...work, id: String(i + 1).padStart(2, "0") };
+});
+
+const cardTags = (work) => (work.tags || [])
+  .filter((tag) => tag !== work.status && !String(work.status || "").includes(tag) && tag !== "開發中")
+  .slice(0, 3);
+
+const MetaLine = ({ work }) => (
+  <div style={{ ...T.label, color: C.faint, fontSize: "0.8rem", letterSpacing: "0.08em", textTransform: "none" }}>
+    {work.type} · {work.status}
+  </div>
+);
+
+const TagRow = ({ work }) => (
+  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+    {cardTags(work).map((tag) => (
+      <span key={tag} style={{
+        ...T.label, fontSize: "0.8rem", color: C.faint,
+        border: `1px solid ${C.hair}`, padding: "0.28rem 0.6rem",
+        letterSpacing: "0.08em"
+      }}>{tag}</span>
+    ))}
+  </div>
+);
+
+const StatRow = ({ stats }) => {
   const isMobile = useIsMobile();
-
   return (
-    <Fade delay={delay}>
-      <div
-        ref={rowRef}
-        style={{
-          borderTop: `1px solid ${C.hair}`,
-          position: "relative"
-        }}>
-        
-        {/* Row header */}
-        <div
-          onClick={onToggle}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-          style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr auto" : "60px 100px 1fr auto",
-            gap: isMobile ? "1rem" : "2.5rem",
-            alignItems: "center",
-            padding: "2.5rem 1.5rem",
-            margin: "0 -1.5rem",
-            cursor: "pointer",
-            userSelect: "none",
-            background: isOpen ? "rgba(26,26,26,0.025)" : hover ? "rgba(26,26,26,0.015)" : "transparent",
-            transition: "background 0.3s ease"
-          }}>
-          
-          {/* Index — large mono */}
-          {!isMobile && <div style={{
-            ...T.mono,
-            fontSize: "0.78rem", color: C.ghost,
-            letterSpacing: "0.1em",
-            paddingTop: "0.3rem",
-            transform: hover ? "translateX(4px)" : "translateX(0)",
-            transition: "transform 0.4s cubic-bezier(.2,.8,.2,1)"
-          }}>
-            — {work.id}
-          </div>}
-
-          {/* Category chip(s) */}
-          {!isMobile && <div style={{ paddingTop: "0.4rem", display: "flex", flexWrap: "wrap", gap: "0.3rem" }}>
-            {(Array.isArray(work.category) ? work.category : [work.category]).map(cat => (
-              <span key={cat} style={{
-                ...T.label, fontSize: "0.6rem",
-                color: C.faint,
-                border: `1px solid ${C.hair}`,
-                padding: "0.32rem 0.7rem",
-                letterSpacing: "0.2em",
-                whiteSpace: "nowrap"
-              }}>{cat}</span>
-            ))}
-          </div>}
-
-          {/* Title block */}
-          <div>
-            <div style={{
-              display: "flex", alignItems: "baseline", gap: "1rem", flexWrap: "wrap",
-              marginBottom: "0.45rem"
-            }}>
-              <h3 style={{
-                ...T.h2,
-
-                color: C.ink, margin: 0,
-                transition: "letter-spacing 0.4s ease",
-                letterSpacing: hover ? "0.005em" : "-0.018em", fontSize: "1.5rem", fontWeight: 500
-              }}>{work.title}</h3>
-              <span style={{
-                fontFamily: "'Cormorant Garamond','Noto Serif TC',serif",
-                fontStyle: "italic",
-                fontSize: "1rem", fontWeight: 300,
-                color: C.ghost
-              }}>{work.sub}</span>
-            </div>
-            <p style={{
-              ...T.bodyS, color: C.faint, margin: "0 0 0.5rem",
-              fontStyle: "italic",
-              maxWidth: 560
-            }}>"{work.angle}"</p>
-            <div style={{ ...T.label, color: C.ghost, fontSize: "0.6rem" }}>{work.type}</div>
-          </div>
-
-          {/* Right: year + status + arrow */}
-          <div style={{
-            display: "flex", flexDirection: "column", alignItems: "flex-end",
-            gap: "0.6rem", paddingTop: "0.2rem"
-          }}>
-            <span style={{ ...T.mono, color: C.faint, fontSize: "0.7rem" }}>{work.year}</span>
-            <StatusDot status={work.status} />
-            <div style={{
-              marginTop: "0.6rem",
-              ...T.label, color: isOpen ? C.ink : C.faint, fontSize: "0.68rem",
-              display: "flex", alignItems: "center", gap: "0.4rem",
-              transition: "color 0.2s ease"
-            }}>
-              <span>{isOpen ? "收起" : "展開"}</span>
-              <span style={{
-                display: "inline-block",
-                transition: "transform 0.4s cubic-bezier(.2,.8,.2,1)",
-                transform: isOpen ? "rotate(180deg)" : "rotate(0)"
-              }}>↓</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Expand */}
-        <div style={expandStyle(isOpen)}>
-          <div style={expandInnerStyle}>
-            <div style={{
-              borderTop: `1px solid ${C.hair}`,
-              padding: "3rem 0 3.5rem"
-            }}>
-              {/* Top row: tags + brief + CTA */}
-              <div style={{
-                display: "grid",
-                gridTemplateColumns: isMobile ? "1fr" : "200px 1fr",
-                gap: isMobile ? "1.5rem" : "3rem",
-                marginBottom: "3rem",
-                alignItems: "start"
-              }}>
-                <div>
-                  <div style={{ ...T.label, color: C.ghost, marginBottom: "1rem" }}>Brief</div>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
-                    {work.tags.map((tag) =>
-                    <span key={tag} style={{
-                      ...T.label, fontSize: "0.64rem", color: C.faint,
-                      border: `1px solid ${C.hair}`, padding: "0.25rem 0.6rem",
-                      letterSpacing: "0.18em", whiteSpace: "nowrap"
-                    }}>{tag}</span>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <p style={{ ...T.body, color: C.mid, margin: 0, maxWidth: 560, fontSize: "1rem" }}>
-                    {work.brief}
-                  </p>
-
-                  <div style={{
-                    marginTop: "2rem",
-                    display: "flex", alignItems: "center", gap: "1.75rem", flexWrap: "wrap"
-                  }}>
-                    <button
-                      className="cta"
-                      onClick={(e) => {e.stopPropagation();onOpenCase(work);}}
-                      style={{
-                        background: C.ink, color: C.bg0,
-                        border: "none",
-                        padding: "0.9rem 1.5rem",
-                        ...T.label, color: C.bg0,
-                        fontSize: "0.72rem",
-                        cursor: "pointer",
-                        transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                        letterSpacing: "0.12em"
-                      }}
-                      onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"}
-                      onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>
-                      看完整 Case Study ↗</button>
-
-                    {work.link &&
-                    <a href={work.link} target="_blank" rel="noopener noreferrer"
-                    className="ul"
-                    onClick={(e) => e.stopPropagation()}
-                    style={{ ...T.bodyS, color: C.ink, fontSize: "0.92rem", fontWeight: 500 }}>
-                      {work.linkLabel || "體驗產品"}</a>
-                    }
-                  </div>
-                </div>
-              </div>
-
-              {/* Image area — image displays at natural ratio, sized big enough so phone screenshots stay readable without cropping. */}
-              <div onClick={(e) => e.stopPropagation()} style={{
-                display: "flex", justifyContent: "center", alignItems: "center",
-                minHeight: 480,
-              }}>
-                {work.mainImage ? (
-                  <img
-                    src={work.mainImage}
-                    alt={`${work.id} · ${work.title}`}
-                    loading="lazy"
-                    style={{
-                      maxHeight: 480,
-                      maxWidth: "100%",
-                      width: "auto",
-                      height: "auto",
-                      display: "block",
-                      objectFit: "contain",
-                    }}
-                  />
-                ) : (
-                  <div style={{ width: "100%", maxWidth: 720 }}>
-                    <ImageSlot
-                      palette={work.palette}
-                      height={520}
-                      label={`${work.id} · ${work.title}`}
-                      caption="main · 主畫面"
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
+  <div style={{
+    display: "grid",
+    gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)",
+    gap: "0.75rem",
+    marginTop: "1.25rem"
+  }}>
+    {stats.map((s) => (
+      <div key={s.l} style={{ borderTop: `1px solid ${C.hairBold}`, paddingTop: "0.55rem" }}>
+        <div style={{ ...T.h4, color: C.ink, fontSize: "1.05rem", margin: 0 }}>{s.n}</div>
+        <div style={{ ...T.label, color: C.faint, fontSize: "0.8rem", letterSpacing: "0.06em", marginTop: "0.25rem" }}>{s.l}</div>
       </div>
-    </Fade>);
-
+    ))}
+  </div>
+  );
 };
 
-const WorksSection = ({ onOpenCase }) => {
-  const [openIds, setOpenIds] = useState(new Set());
+const OpenButton = ({ onClick, children }) => (
+  <button className="cta" onClick={onClick} style={{
+    background: C.ink, color: C.bg0, border: "none",
+    padding: "0.85rem 1.25rem",
+    ...T.label, color: C.bg0, fontSize: "0.8rem",
+    letterSpacing: "0.1em", cursor: "pointer"
+  }}>{children}</button>
+);
+
+const FeaturedCard = ({ work, onOpenCase }) => {
   const isMobile = useIsMobile();
-  const toggle = (id) => setOpenIds((prev) => {
-    const next = new Set(prev);
-    if (next.has(id)) next.delete(id);else
-    next.add(id);
-    return next;
-  });
+  return (
+    <article style={{
+      display: "grid",
+      gridTemplateColumns: isMobile ? "1fr" : "minmax(220px, 340px) 1fr",
+      gap: isMobile ? "1.25rem" : "2.5rem",
+      padding: "2rem 0",
+      borderTop: `1px solid ${C.hair}`,
+      alignItems: "center"
+    }}>
+      <img src={work.mainImage} alt="" style={{ width: "100%", maxHeight: isMobile ? 280 : 360, objectFit: "contain" }} />
+      <div>
+        <h3 style={{ ...T.h2, color: C.ink, margin: "0 0 0.35rem", fontSize: "clamp(1.45rem, 2.4vw, 1.85rem)" }}>{work.title}</h3>
+        <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", color: C.faint, marginBottom: "0.75rem" }}>{work.sub}</div>
+        <MetaLine work={work} />
+        <p style={{ ...T.body, color: C.mid, margin: "1rem 0 0", maxWidth: 560 }}>{work.brief}</p>
+        {work.stats && <StatRow stats={work.stats} />}
+        <div style={{ marginTop: "1.25rem" }}><TagRow work={work} /></div>
+        <div style={{ marginTop: "1.5rem", display: "flex", gap: "1.25rem", flexWrap: "wrap", alignItems: "center" }}>
+          <OpenButton onClick={() => onOpenCase(work)}>看完整案例</OpenButton>
+          {work.link && (
+            <a href={work.link} target="_blank" rel="noopener noreferrer" className="ul" style={{ ...T.bodyS, color: C.ink }}>
+              {work.linkLabel || "前往作品"}
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+};
+
+const SideCard = ({ work, onOpenCase }) => (
+  <article style={{
+    borderTop: `1px solid ${C.hair}`,
+    padding: "1.5rem 0 0.25rem",
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.75rem"
+  }}>
+    <img src={work.mainImage} alt="" style={{ width: "100%", maxHeight: 180, objectFit: "contain" }} />
+    <div style={{ ...T.label, color: C.ink, fontSize: "0.8rem", letterSpacing: "0.08em" }}>{work.status}</div>
+    <h3 style={{ ...T.h3, color: C.ink, margin: 0, fontSize: "1.25rem" }}>{work.title}</h3>
+    <MetaLine work={work} />
+    <p style={{ ...T.bodyS, color: C.mid, margin: 0 }}>{work.brief}</p>
+    <TagRow work={work} />
+    <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center", marginTop: "0.35rem" }}>
+      <OpenButton onClick={() => onOpenCase(work)}>看案例</OpenButton>
+      {work.link && (
+        <a href={work.link} target="_blank" rel="noopener noreferrer" className="ul" style={{ ...T.bodyS, color: C.ink }}>
+          {work.linkLabel || "看試用版"}
+        </a>
+      )}
+    </div>
+  </article>
+);
+
+const WorksSection = ({ onOpenCase }) => {
+  const isMobile = useIsMobile();
+  const list = orderedWorks();
+  const featured = list.filter((w) => w.featured);
+  const side = list.filter((w) => !w.featured);
 
   return (
     <section id="works" style={{
       background: C.bg1,
       borderTop: `1px solid ${C.hair}`,
-      padding: isMobile ? "4rem 1.25rem" : "7rem 3rem", lineHeight: "1.75"
+      padding: isMobile ? "4.5rem 1.25rem" : "9rem 3rem",
     }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <SectionHeader
           eyebrow="Selected Work"
-          title="作品空間"
-          subtitle="點擊任一作品展開簡介；再點「看完整 Case Study」進入詳細設計流程。"
-          right={
-          <div style={{ textAlign: "right" }}>
-              <div style={{ ...T.mono, color: C.faint, fontSize: "0.7rem" }}>04 / works</div>
-              <div style={{ ...T.label, color: C.ghost, marginTop: "0.4rem" }}>App · Web · 商業</div>
-            </div>
-          } />
-        
+          title="作品"
+          subtitle="兩個主要作品，以及兩個還在開發的試用版。"
+        />
 
         <div>
-          {works.map((w, i) =>
-          <WorkRow
-            key={w.id}
-            work={w}
-            isOpen={openIds.has(w.id)}
-            onToggle={() => toggle(w.id)}
-            onOpenCase={onOpenCase}
-            delay={i * 0.05} />
-
-          )}
-          <div style={{ borderTop: `1px solid ${C.hair}` }} />
+          {featured.map((w) => <FeaturedCard key={w.title} work={w} onOpenCase={onOpenCase} />)}
         </div>
 
         <div style={{
-          marginTop: "3rem",
-          display: "flex", justifyContent: "space-between", alignItems: "baseline"
+          display: "grid",
+          gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+          gap: isMobile ? "0.5rem" : "2.5rem",
+          marginTop: "0.5rem"
         }}>
-          <span style={{ ...T.label, color: C.ghost, fontStyle: "italic", textTransform: "none", letterSpacing: "0.08em", fontSize: "12px" }}>
-            還在做新的東西⋯
-          </span>
-          <span style={{ ...T.mono, color: C.ghost, fontSize: "0.7rem" }}>END OF INDEX</span>
+          {side.map((w) => <SideCard key={w.title} work={w} onOpenCase={onOpenCase} />)}
         </div>
-      </div>
-    </section>);
 
+        <p style={{ ...T.bodyS, color: C.faint, margin: "2.5rem 0 0", fontSize: "0.95rem" }}>
+          其他小工具：
+          <a href="https://job-tracker-docs.vercel.app" target="_blank" rel="noopener noreferrer" className="ul">職缺追蹤網站</a>
+          、
+          <a href="https://design-gym-ntfu.vercel.app" target="_blank" rel="noopener noreferrer" className="ul">設計與繪畫訓練場</a>
+          （自用、和 AI 一起做出來的）
+        </p>
+      </div>
+    </section>
+  );
 };
 
 window.WorksSection = WorksSection;

@@ -31,14 +31,14 @@ const ExperienceSection = () => {
     <section id="experience" style={{
       background: C.bg0,
       borderTop: `1px solid ${C.hair}`,
-      padding: isMobile ? "4rem 1.25rem" : "7rem 3rem",
+      padding: isMobile ? "4.5rem 1.25rem" : "9rem 3rem",
       position: "relative",
     }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <SectionHeader
           eyebrow="Experience"
           title="經歷"
-          subtitle="工讀、接案，以及打工換宿。"
+          subtitle="工讀與接案。"
         />
 
         <div>
@@ -59,37 +59,7 @@ const ExperienceSection = () => {
             </div>
           ))}
 
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "220px 1fr",
-            gap: isMobile ? "0.35rem" : "3rem",
-            alignItems: "baseline",
-            padding: "1.35rem 0",
-            borderTop: `1px solid ${C.hair}`,
-          }}>
-            <div style={{ ...T.mono, color: C.faint, fontSize: "0.72rem" }}>其他</div>
-            <p style={{ ...T.bodyS, color: C.mid, margin: 0 }}>
-              鹿粼梅花鹿園區 打工換宿（2025/02）、福憩背包客棧 打工換宿
-            </p>
-          </div>
-
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "220px 1fr",
-            gap: isMobile ? "0.35rem" : "3rem",
-            alignItems: "baseline",
-            padding: "1.35rem 0",
-            borderTop: `1px solid ${C.hair}`,
-            borderBottom: `1px solid ${C.hair}`,
-          }}>
-            <div style={{ ...T.mono, color: C.faint, fontSize: "0.72rem" }}>個人專案</div>
-            <p style={{ ...T.bodyS, color: C.mid, margin: 0 }}>
-              <a href="https://job-tracker-docs.vercel.app" target="_blank" rel="noopener noreferrer" className="ul">職缺追蹤網站</a>
-              、
-              <a href="https://design-gym-ntfu.vercel.app" target="_blank" rel="noopener noreferrer" className="ul">設計與繪畫訓練場</a>
-              。兩個都是給我自己每天用的小工具，和 AI 一起做出來的。
-            </p>
-          </div>
+          <div style={{ borderBottom: `1px solid ${C.hair}` }} />
         </div>
       </div>
     </section>

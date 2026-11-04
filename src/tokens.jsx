@@ -61,14 +61,14 @@ const T = {
   label: {
     fontFamily: "'JetBrains Mono', ui-monospace, monospace",
     fontWeight: 500,
-    fontSize: "0.7rem",
-    letterSpacing: "0.16em",
+    fontSize: "0.8rem",
+    letterSpacing: "0.12em",
     textTransform: "uppercase"
   },
   mono: {
     fontFamily: "'JetBrains Mono', ui-monospace, monospace",
     fontWeight: 400,
-    fontSize: "0.75rem",
+    fontSize: "0.8rem",
     letterSpacing: "0.06em"
   }
 };
@@ -82,7 +82,7 @@ const C = {
   ink: "#1a1a1a",
   mid: "#3a3a3a",
   faint: "#524e4a",
-  ghost: "#6a6460",
+  ghost: "#524e4a",
   hair: "rgba(26,26,26,0.12)",
   hairSoft: "rgba(26,26,26,0.07)",
   hairBold: "rgba(26,26,26,0.22)",
@@ -213,7 +213,7 @@ const StatusDot = ({ status, dark = false }) => {
       color: dark ? C.inkInv : C.mid,
       fontWeight: 500,
       letterSpacing: "0.08em",
-      display: "inline-flex", alignItems: "center", gap: "0.45rem", fontSize: "0.75rem"
+      display: "inline-flex", alignItems: "center", gap: "0.45rem", fontSize: "0.8rem"
     }}>
       <span style={{
         width: 5, height: 5, borderRadius: "50%",

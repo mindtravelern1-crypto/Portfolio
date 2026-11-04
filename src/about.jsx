@@ -8,7 +8,7 @@ const AboutSection = () => {
   <section id="about" style={{
     background: C.bg1,
     borderTop: `1px solid ${C.hair}`,
-    padding: isMobile ? "4rem 1.25rem" : "7rem 3rem 7rem",
+    padding: isMobile ? "4.5rem 1.25rem" : "9rem 3rem",
     position: "relative",
   }}>
     <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -34,14 +34,14 @@ const AboutSection = () => {
             <p style={{ ...T.caption, color: C.mid, margin: 0, lineHeight: 1.8 }}>
               心理系大三<br />
               預計 2028 畢業<br />
-              學 UIUX · 創業課程<br />
+              學體驗設計 · 創業課程<br />
               台北 / Taipei
             </p>
           </Fade>
           <Fade delay={0.18}>
             <div style={{ ...T.label, color: C.faint, margin: "1.75rem 0 0.65rem" }}>Open to</div>
             <p style={{ ...T.caption, color: C.mid, margin: 0, lineHeight: 1.8 }}>
-              UIUX 實習<br />
+              體驗設計相關實習<br />
               Side project<br />
               對這些問題有興趣的對話
             </p>
@@ -73,39 +73,17 @@ const AboutSection = () => {
           <div style={{ maxWidth: 600 }}>
             <Fade delay={0.14}>
               <p style={{ ...T.body, color: C.mid, marginBottom: "1.5rem", fontSize: "1rem" }}>
-                心理系學生，關注人與科技之間的互動體驗。對情緒、敘事與自我探索相關的數位產品設計有興趣，正在探索
-                <em className="latin" style={{ opacity: 0.9, margin: "0 0.15em" }}>UX</em>、
-                <em className="latin" style={{ opacity: 0.9, margin: "0 0.15em" }}>Interaction Design</em>
-                與
-                <em className="latin" style={{ opacity: 0.9, margin: "0 0.15em" }}>AI Experience Design</em>
-                的可能性。
+                做東西時，我常先把自己放進使用者的位置，想像他們打開畫面時的感受：會不會看不懂、會不會覺得麻煩。我和 Claude 等 AI 工具協作，把想法快速做成能用的版本，再自己在手機和電腦上一遍遍操作，哪裡覺得卡、覺得怪，就改到順為止。介面用 Figma 規劃，插畫用 Procreate 手繪。
               </p>
             </Fade>
             <Fade delay={0.2}>
               <p style={{ ...T.body, color: C.mid, marginBottom: "1.5rem", fontSize: "1rem" }}>
-                國中看書時意外接觸到心理學，當時也因「畫畫吃不飽」這樣的想法，而放棄了畫畫。但後來修讀心理系後也並沒有打算成為心理師，同時也開始重新學習繪畫，並接觸到能夠把我的專長、興趣與所學整合起來的
-                <em className="latin" style={{ opacity: 0.9, margin: "0 0.15em" }}>UIUX</em>。
+                國中看書時意外接觸到心理學，當時因「畫畫吃不飽」放下畫畫；後來在心理系重新畫，把心理學和繪畫接到體驗設計。
               </p>
             </Fade>
             <Fade delay={0.26}>
-              <p style={{ ...T.body, color: C.mid, marginBottom: "1.5rem", fontSize: "1rem" }}>
-                心理學讓我理解人如何思考、選擇、變化；UIUX 讓我把這些理解變成可以被體驗的介面。
-              </p>
-            </Fade>
-            <Fade delay={0.32}>
-              <p style={{ ...T.body, color: C.mid, marginBottom: "1.5rem", fontSize: "1rem" }}>
-                經常進行自我探索、與 AI 對話。<br />
-                思考深度高、價值感驅動、想影響人，但還在學習落地。
-              </p>
-            </Fade>
-            <Fade delay={0.38}>
-              <p style={{ ...T.body, color: C.mid, marginBottom: "1.5rem", fontSize: "1rem" }}>
-                現在是東吳心理系大三，預計 2028 畢業，同時在學 UIUX、商用設計，也修創業思維與實務。統計與實驗方法是系上的課。不太確定這些最終會走到哪裡，但我知道我一直在找的是同一件事。
-              </p>
-            </Fade>
-            <Fade delay={0.44}>
               <p style={{ ...T.body, color: C.mid, marginBottom: "3rem", fontSize: "1rem" }}>
-                做東西時，我常先把自己放進使用者的位置，想像他們打開畫面時的感受：會不會看不懂、會不會覺得麻煩。我和 Claude 等 AI 工具協作，把想法快速做成能用的版本，再自己在手機和電腦上一遍遍操作，哪裡覺得卡、覺得怪，就改到順為止。介面用 Figma 規劃，插畫用 Procreate 手繪。
+                現在是東吳心理系大三，預計 2028 畢業，同時在學體驗設計、商用設計，也修創業思維與實務。統計與實驗方法是系上的課。
               </p>
             </Fade>
           </div>
@@ -116,13 +94,13 @@ const AboutSection = () => {
               paddingTop: "2rem",
               borderTop: `1px solid ${C.hair}`,
               display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
+              gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
               gap: "2.5rem",
               maxWidth: 720,
             }}>
               {[
                 { k: "心理學", v: "理解人怎麼想、怎麼選擇、怎麼變化的內在運作。" },
-                { k: "UIUX", v: "理解介面怎麼成為一種讓人能誠實的環境。" },
+                { k: "體驗設計", v: "理解介面怎麼成為一種讓人能誠實的環境。" },
                 { k: "Vibe Coding", v: "和 AI 一起把點子做出來，做我自己每天會用的工具。" },
               ].map(({ k, v }) => (
                 <div key={k}>

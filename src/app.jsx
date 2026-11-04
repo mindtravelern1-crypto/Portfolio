@@ -11,9 +11,9 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 
 const NAV_LINKS = [
 ["作品", "#works"],
-["筆記", "#notes"],
 ["關於", "#about"],
 ["經歷", "#experience"],
+["筆記", "#notes"],
 ["聯繫", "#contact"]];
 
 
@@ -48,7 +48,7 @@ const Nav = () => {
         {NAV_LINKS.map(([txt, href]) =>
         <a key={txt} href={href} style={{
           ...T.label, color: C.faint,
-          textDecoration: "none", fontSize: "0.68rem",
+          textDecoration: "none", fontSize: "0.8rem",
           transition: "color 0.2s ease"
         }}
         onMouseEnter={(e) => e.currentTarget.style.color = C.ink}
@@ -87,9 +87,9 @@ const Portfolio = () => {
       <Nav />
       <Hero />
       <WorksSection onOpenCase={setPanelWork} />
-      <NotesSection />
       <AboutSection />
       <ExperienceSection />
+      <NotesSection />
       <ContactSection />
       <Footer />
 
@@ -97,7 +97,7 @@ const Portfolio = () => {
       <CaseStudy work={panelWork} onClose={() => setPanelWork(null)} />
       }
 
-      <TweaksPanel title="Tweaks">
+      {/localhost|127\.0\.0\.1/.test(window.location.hostname) && <TweaksPanel title="Tweaks">
         <TweakSection label="主題 Theme" />
         <TweakRadio
           label="色調"
@@ -129,7 +129,7 @@ const Portfolio = () => {
         }}>
           看作品 →
         </TweakButton>
-      </TweaksPanel>
+      </TweaksPanel>}
     </div>);
 
 };

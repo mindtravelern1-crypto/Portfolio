@@ -122,19 +122,17 @@ const CaseStudy = ({ work, onClose }) => {
             {/* 主類別 chip */}
             {(Array.isArray(work.category) ? work.category : [work.category]).map(cat => (
               <span key={cat} style={{
-                ...T.label, color: C.mid,
+                ...T.label, color: C.faint,
                 border: `1px solid ${C.hairBold}`,
                 padding: "0.28rem 0.65rem",
-                fontSize: "0.6rem", letterSpacing: "0.2em"
+                fontSize: "0.8rem", letterSpacing: "0.08em"
               }}>{cat}</span>
             ))}
-            <span style={{ ...T.mono, color: C.ghost, fontSize: "0.6rem" }}>·</span>
-            {/* 年份 */}
-            <span style={{ ...T.mono, color: C.faint, fontSize: "0.7rem" }}>{work.year}</span>
-            <span style={{ ...T.mono, color: C.ghost, fontSize: "0.6rem" }}>·</span>
-            {/* 細項 */}
-            <span style={{ ...T.label, color: C.ghost, fontSize: "0.68rem" }}>{work.type}</span>
-            <span style={{ ...T.mono, color: C.ghost, fontSize: "0.6rem" }}>·</span>
+            <span style={{ ...T.mono, color: C.faint, fontSize: "0.8rem" }}>·</span>
+            <span style={{ ...T.mono, color: C.faint, fontSize: "0.8rem" }}>{work.year}</span>
+            <span style={{ ...T.mono, color: C.faint, fontSize: "0.8rem" }}>·</span>
+            <span style={{ ...T.label, color: C.faint, fontSize: "0.8rem", letterSpacing: "0.08em" }}>{work.type}</span>
+            <span style={{ ...T.mono, color: C.faint, fontSize: "0.8rem" }}>·</span>
             {/* 狀態 */}
             <StatusDot status={work.status} />
           </div>
@@ -183,6 +181,27 @@ const CaseStudy = ({ work, onClose }) => {
             fontSize: "1rem",
             opacity: 0, animation: "fup 0.9s ease 0.65s forwards",
           }}>{work.brief}</p>
+
+          {Array.isArray(work.summary) && work.summary.length > 0 && (
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
+              gap: "1.25rem",
+              maxWidth: 920,
+              margin: "0 0 2.5rem",
+            }}>
+              {work.summary.map((item) => (
+                <div key={item.k} style={{ borderTop: `2px solid ${C.ink}`, paddingTop: "0.75rem" }}>
+                  <div style={{ ...T.label, color: C.faint, fontSize: "0.8rem", marginBottom: "0.45rem" }}>{item.k}</div>
+                  {item.href ? (
+                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="ul" style={{ ...T.bodyS, color: C.ink }}>{item.v}</a>
+                  ) : (
+                    <p style={{ ...T.bodyS, color: C.ink, margin: 0 }}>{item.v}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
 
           {/* Hero: carousel if heroImages provided, fall back to mainImage as single slide, else placeholder */}
           <div style={{ opacity: 0, animation: "fup 1s ease 0.8s forwards" }}>
@@ -354,6 +373,7 @@ const CaseStudy = ({ work, onClose }) => {
 /* ─── Chapter: handles three layouts depending on content ─── */
 const Chapter = ({ chapter: ch, idx, palette, workId }) => {
   const [ref, inView] = useInView();
+  const isMobile = useIsMobile();
 
   /* Patterns layout — numbered subsections each with title + bullet list + closing line */
   if (ch.patterns) {
@@ -605,11 +625,14 @@ const Chapter = ({ chapter: ch, idx, palette, workId }) => {
           borderTop: idx === 0 ? "none" : `1px solid ${C.hairBold}`,
         }}>
         <ChapterHeader ch={ch} inView={inView} />
-        <div style={{ marginTop: "2.5rem" }}>
+        {ch.note && (
+          <p style={{ ...T.body, color: C.mid, margin: "1.5rem 0 0", maxWidth: 660 }}>{ch.note}</p>
+        )}
+        <div style={{ marginTop: "1.5rem" }}>
           {ch.decisions.map((d, i) => (
             <div key={i} style={{
               display: "grid",
-              gridTemplateColumns: "36px 1fr 1.2fr",
+              gridTemplateColumns: isMobile ? "1fr" : "36px 1fr 1.2fr",
               gap: "2rem",
               padding: "2rem 0",
               borderBottom: `1px solid ${C.hair}`,
@@ -688,7 +711,7 @@ const Chapter = ({ chapter: ch, idx, palette, workId }) => {
 const ChapterHeader = ({ ch, inView }) => (
   <header style={{
     display: "grid",
-    gridTemplateColumns: "auto 1fr auto",
+    gridTemplateColumns: "auto 1fr",
     gap: "1.25rem",
     alignItems: "baseline",
   }}>
@@ -700,18 +723,12 @@ const ChapterHeader = ({ ch, inView }) => (
     }}>{ch.n}</span>
     <h3 style={{
       ...T.h3,
-      fontSize: "clamp(1.4rem, 2.6vw, 1.85rem)",
+      fontSize: "clamp(1.35rem, 2.2vw, 1.6rem)",
       color: C.ink, margin: 0,
       opacity: inView ? 1 : 0,
       transform: inView ? "none" : "translateY(8px)",
       transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s",
     }}>{ch.label}</h3>
-    <span style={{
-      fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic",
-      color: "#3a3a3a", fontSize: "1rem",
-      opacity: inView ? 0.85 : 0,
-      transition: "opacity 0.7s ease 0.3s",
-    }}>/ {ch.kicker}</span>
   </header>
 );
 

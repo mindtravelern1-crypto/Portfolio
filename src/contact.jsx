@@ -14,7 +14,7 @@ const ContactSection = () => {
 <section id="contact" style={{
   background: C.bg0,
   borderTop: `1px solid ${C.hair}`,
-  padding: isMobile ? "4rem 1.25rem" : "7rem 3rem 7rem",
+  padding: isMobile ? "4.5rem 1.25rem" : "9rem 3rem",
   position: "relative",
   overflow: "hidden"
 }}>
@@ -50,7 +50,7 @@ const ContactSection = () => {
           </Fade>
           <Fade delay={0.12}>
             <p style={{ ...T.body, color: C.mid, maxWidth: 380, marginBottom: "2.5rem", fontSize: "0.98rem" }}>
-              對心理學 × 設計 × HCI、自我探索、自我實現這類問題有共鳴的，或是想聊聊 UIUX 實習，都歡迎寫信給我。
+              對心理學 × 設計 × HCI、自我探索、自我實現這類問題有共鳴的，或是想聊聊體驗設計相關實習，都歡迎寫信給我。
             </p>
           </Fade>
           <Fade delay={0.18}>

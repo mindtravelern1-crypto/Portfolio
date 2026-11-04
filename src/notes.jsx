@@ -98,12 +98,14 @@ const NoteRow = ({ note, isOpen, onToggle, delay = 0 }) => {
 
 const NotesSection = () => {
   const [openIdx, setOpenIdx] = useState(null);
+  const [showAll, setShowAll] = useState(false);
   const isMobile = useIsMobile();
+  const visible = showAll ? notes : notes.slice(0, 2);
   return (
     <section id="notes" style={{ ...{
         background: C.bg2,
         borderTop: "1px solid rgba(0,0,0,0.2)",
-        padding: isMobile ? "4rem 1.25rem" : "7rem 3rem",
+        padding: isMobile ? "4.5rem 1.25rem" : "9rem 3rem",
         color: C.inkInv
       }, background: "rgb(28, 26, 24)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -123,16 +125,30 @@ const NotesSection = () => {
         
 
         <div>
-          {notes.map((n, i) =>
+          {visible.map((n, i) =>
           <NoteRow
-            key={i}
+            key={n.title}
             note={n}
             isOpen={openIdx === i}
             onToggle={() => setOpenIdx((prev) => prev === i ? null : i)}
             delay={i * 0.04} />
 
           )}
-          <div style={{ borderTop: `1px solid ${C.hairInv}` }} />
+          <div style={{ borderTop: `1px solid ${C.hairInv}`, paddingTop: "1.5rem" }}>
+            <button
+              onClick={() => { setShowAll((v) => !v); setOpenIdx(null); }}
+              style={{
+                background: "none",
+                border: `1px solid ${C.hairInv}`,
+                color: C.inkInv,
+                ...T.label,
+                fontSize: "0.8rem",
+                letterSpacing: "0.12em",
+                padding: "0.7rem 1.1rem",
+                cursor: "pointer",
+              }}
+            >{showAll ? "收起筆記" : "更多筆記"}</button>
+          </div>
         </div>
 
         <div style={{ marginTop: "2.5rem", display: "flex", justifyContent: "space-between" }}>
