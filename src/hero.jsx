@@ -1,135 +1,39 @@
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   HERO — first screen, works peek below
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* Hero is text only. No illustration and no cat. */
 
-const HeroCat = ({ compact = false }) => (
-  <div style={{
-    width: compact ? 96 : "100%",
-    height: compact ? 96 : 380,
-    margin: compact ? "0 0 1rem" : 0,
-    overflow: "hidden",
-    borderRadius: compact ? 14 : 18,
-    pointerEvents: "none",
-  }}>
-    <img
-      src="assets/works/04-cat.png"
-      alt="CATI 手繪貓咪"
-      style={{
-        width: "100%",
-        height: "140%",
-        objectFit: "cover",
-        objectPosition: "center 8%",
-        display: "block",
-      }}
-    />
-  </div>
+const Hero = () => (
+  <section className="hero-typo bg-paper">
+    <div className="h-blob" />
+    <div className="h-blob2" />
+    <svg className="doodle" style={{ right: "31%", top: 84, width: 34, height: 34, color: "var(--coral)" }} aria-hidden="true"><use href="#d-spark" /></svg>
+    <svg className="doodle" style={{ right: "28.5%", top: 132, width: 16, height: 16, color: "var(--blue-500)" }} aria-hidden="true"><use href="#d-spark" /></svg>
+    <div className="wrap">
+      <div className="h-main">
+        <div className="kicker"><i /><span className="label">心理系 · 體驗設計 · 跨域學習中</span></div>
+        <h1 className="display hero-display">
+          <div><span className="g">透過</span> 內容 <span className="o ul-doodle">理解人<svg style={{ color: "var(--blue-500)" }} aria-hidden="true"><use href="#d-ul" /></svg></span></div>
+          <div><span className="g">透過</span> 產品 <span className="o">放大幫助</span></div>
+          <div><span className="g">透過</span> 方法 <span className="o">賦能他人</span></div>
+        </h1>
+        <p className="body intro">我是東吳心理系大三，預計 2028 畢業，正在找體驗設計相關實習。這份作品集是我試著理解「人怎麼成長」的過程。</p>
+        <div className="ctas">
+          <a className="btn btn-primary" href="#works">看作品 <span>↓</span></a>
+          <a className="btn btn-ghost" href="#contact">聯繫</a>
+        </div>
+      </div>
+      <ol className="h-index">
+        <li><span className="latin-i">01</span>心理學</li>
+        <li><span className="latin-i">02</span>體驗設計</li>
+        <li><span className="latin-i">03</span>Vibe Coding</li>
+      </ol>
+    </div>
+  </section>
 );
 
-const PILLAR_LINES = [
-{ gray: "透過", noun: "內容", outcome: "理解人", suffix: "" },
-{ gray: "透過", noun: "產品", outcome: "放大幫助", suffix: "" },
-{ gray: "透過", noun: "方法", outcome: "賦能他人", suffix: "" }];
-
-
-const Hero = () => {
-  const isMobile = useIsMobile();
-
-  const btn = {
-    ...T.label,
-    fontSize: "0.8rem",
-    letterSpacing: "0.12em",
-    textDecoration: "none",
-    display: "inline-block",
-    padding: "0.85rem 1.35rem",
-    cursor: "pointer",
-  };
-
-  return (
-    <section style={{
-      position: "relative",
-      minHeight: "auto",
-      padding: isMobile ? "5.5rem 1.25rem 2.5rem" : "6.5rem 3rem 3rem",
-      display: "flex", flexDirection: "column",
-      background: C.bg0,
-      overflow: "hidden"
-    }}>
-      <div style={{
-        maxWidth: 1200, margin: "0 auto", width: "100%",
-        display: "grid",
-        gridTemplateColumns: isMobile ? "1fr" : "1.15fr 0.85fr",
-        gap: isMobile ? 0 : "2rem",
-        alignItems: "center",
-        padding: isMobile ? "1.5rem 0 0.5rem" : "2rem 0 0.5rem",
-        position: "relative", zIndex: 2
-      }}>
-      <div style={{ position: "relative", zIndex: 2 }}>
-        <div style={{
-          display: "flex", alignItems: "center", gap: "0.9rem",
-          marginBottom: "1.75rem",
-          opacity: 0, animation: "fup 0.8s ease 0.1s forwards"
-        }}>
-          <span style={{ width: 32, height: 1, background: C.accent }} />
-          <span style={{ ...T.label, color: C.accent, fontSize: "0.8rem" }}>
-            心理系 · 體驗設計 · 跨域學習中
-          </span>
-        </div>
-
-        {isMobile && <HeroCat compact />}
-
-        <h1 style={{
-          margin: 0,
-          maxWidth: 1000,
-          fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
-          fontWeight: 400,
-          fontSize: "clamp(1.65rem, 3.2vw, 2.35rem)",
-          lineHeight: 1.45,
-          letterSpacing: "-0.015em",
-          color: C.ink
-        }}>
-          {PILLAR_LINES.map((p, i) =>
-          <div key={i} style={{
-            opacity: 0,
-            animation: `fup 0.95s cubic-bezier(.2,.8,.2,1) ${0.2 + i * 0.12}s forwards`
-          }}>
-              <span style={{ color: C.faint }}>{p.gray}</span>
-              <span style={{ margin: "0 0.2em" }}>{p.noun}</span>
-              <span style={{
-              fontStyle: "italic",
-              fontFamily: "'Cormorant Garamond','Noto Serif TC',serif",
-              fontWeight: 400
-            }}>{p.outcome}</span>
-            </div>
-          )}
-        </h1>
-
-        <div style={{
-          maxWidth: 520, marginTop: "1.75rem",
-          opacity: 0, animation: "fup 0.85s ease 0.7s forwards"
-        }}>
-          <p style={{ ...T.body, color: C.mid, margin: 0, fontSize: "1rem" }}>
-            我是東吳心理系大三，預計 2028 畢業，正在找體驗設計相關實習。這份作品集是我試著理解
-            <em className="latin" style={{ opacity: 0.9, margin: "0 0.15em" }}>「人怎麼成長」</em>
-            的過程。
-          </p>
-        </div>
-
-        <div style={{
-          marginTop: "1.75rem", display: "flex", alignItems: "center", gap: "0.85rem", flexWrap: "wrap",
-          opacity: 0, animation: "fup 0.8s ease 0.9s forwards"
-        }}>
-          <a href="#works" className="cta" style={{
-            ...btn, background: C.accent, color: C.bg0
-          }}>看作品</a>
-          <a href="#contact" style={{
-            ...btn, background: "transparent", color: C.ink,
-            border: `1px solid ${C.ink}`
-          }}>聯繫</a>
-        </div>
-      </div>
-      {!isMobile && <HeroCat />}
-      </div>
-    </section>);
-
-};
+const HeroWave = () => (
+  <svg className="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" style={{ background: "var(--paper)" }} aria-hidden="true">
+    <path d="M0 30 C180 8 340 50 560 30 S980 6 1180 26 S1380 40 1440 22 L1440 56 L0 56Z" fill="var(--paper-2)" />
+  </svg>
+);
 
 window.Hero = Hero;
+window.HeroWave = HeroWave;

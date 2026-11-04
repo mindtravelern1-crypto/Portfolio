@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Noto+Serif+TC:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <!-- Code-referenced assets (used in JSX as window.__resources[id]) -->
   <meta name="ext-resource-dependency" content="assets/works/01/login-screen.png" data-resource-id="work01" />
@@ -48,10 +48,10 @@
     html, body { margin: 0; padding: 0; }
     html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
     body {
-      font-family: "Noto Serif TC", "Cormorant Garamond", Georgia, serif;
-      font-weight: 300;
-      color: #1a1a1a;
-      background: #f5f4f0;
+      font-family: "Noto Sans TC", system-ui, sans-serif;
+      font-weight: 400;
+      color: #1e2126;
+      background: #f7f4ee;
       text-rendering: optimizeLegibility;
     }
     img { display: block; max-width: 100%; }
@@ -147,8 +147,16 @@
     /* Stage scaffold for sections — slight border between blocks */
     section { position: relative; z-index: 2; }
   </style>
+  <link rel="stylesheet" href="styles/paper-blue.css" />
 </head>
-<body class="grain">
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="d-ul" viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 C40 3.5 78 12.5 118 7.5 S176 4.5 197 8.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></symbol>
+      <symbol id="d-spark" viewBox="0 0 24 24"><path d="M12 1.5 C12.8 8.6 15.2 11 22.5 12 C15.2 13 12.8 15.4 12 22.5 C11.2 15.4 8.8 13 1.5 12 C8.8 11 11.2 8.6 12 1.5Z" fill="currentColor"/></symbol>
+      <symbol id="d-heart" viewBox="0 0 30 28"><path d="M15 25 C6 18 2 13 3.5 8 C5 3 11.5 2.5 15 8 C18 2.5 25 3 26.5 8.5 C28 13.5 23 18.5 15.5 25" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    </defs>
+  </svg>
 
   <!-- Mount -->
   <div id="root"></div>
@@ -167,6 +175,7 @@
   <script type="text/babel" src="src/works.jsx"></script>
   <script type="text/babel" src="src/notes.jsx"></script>
   <script type="text/babel" src="src/about.jsx"></script>
+  <script type="text/babel" src="src/illustrations.jsx"></script>
   <script type="text/babel" src="src/experience.jsx"></script>
   <script type="text/babel" src="src/contact.jsx"></script>
   <script type="text/babel" src="src/tweaks-panel.jsx"></script>

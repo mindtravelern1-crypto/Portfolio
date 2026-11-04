@@ -1,166 +1,48 @@
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   NOTEBOOK — dark inverse section, expanding notes
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-const NoteRow = ({ note, isOpen, onToggle, delay = 0 }) => {
-  const [hover, setHover] = useState(false);
-  return (
-    <Fade delay={delay}>
-      <div style={{ borderTop: `1px solid ${C.hairInv}` }}>
-        <div
-          onClick={onToggle}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-          style={{
-            padding: "1.85rem 0",
-            cursor: "pointer", userSelect: "none",
-            display: "grid", gridTemplateColumns: "auto 1fr auto", gap: "2rem",
-            alignItems: "baseline",
-            opacity: isOpen ? 1 : hover ? 1 : 0.92,
-            transition: "opacity 0.3s ease"
-          }}>
-          
-          <div style={{ display: "flex", alignItems: "center", minWidth: 90 }}>
-            <span style={{
-              ...T.label,
-              fontSize: "0.62rem",
-              color: C.midInv,
-              fontWeight: 500,
-              letterSpacing: "0.18em",
-              border: `1px solid rgba(240,239,233,0.28)`,
-              padding: "0.28rem 0.65rem",
-              whiteSpace: "nowrap",
-            }}>{note.type}</span>
-          </div>
-
-          <div>
-            <h3 style={{
-              ...T.h4,
-              fontSize: "clamp(1rem, 1.7vw, 1.2rem)",
-              color: C.inkInv, margin: "0 0 0.5rem",
-              fontWeight: 400, lineHeight: 1.5
-            }}>{note.title}</h3>
-            <p style={{ ...{ ...T.bodyS, color: C.faintInv, margin: 0, fontStyle: "italic", opacity: "0.01" }, color: "rgb(248, 248, 248)", opacity: "1" }}>
-              {note.excerpt}
-            </p>
-          </div>
-
-          <div style={{
-            ...T.label, color: C.inkInv, fontSize: "0.68rem",
-            opacity: 1,
-            transition: "opacity 0.3s"
-          }}>
-            <span style={{
-              display: "inline-block",
-              transition: "transform 0.4s cubic-bezier(.2,.8,.2,1)",
-              transform: isOpen ? "rotate(180deg)" : "rotate(0)"
-            }}>↓</span>
-          </div>
-        </div>
-
-        <div style={expandStyle(isOpen)}>
-          <div style={expandInnerStyle}>
-            <div style={{
-              borderTop: `1px solid ${C.hairInv}`,
-              padding: "2rem 0 2.5rem",
-              maxWidth: 720
-            }}>
-              {note.full.split("\n\n").map((para, pi) =>
-              <p key={pi} style={{
-                ...T.body, color: C.midInv,
-                fontSize: "1rem", lineHeight: 2,
-                margin: pi === 0 ? "0 0 1.25rem" : "0 0 1.25rem",
-                whiteSpace: "pre-line"
-              }}>{para}</p>
-              )}
-              {note.link &&
-              <a href={note.link} target="_blank" rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              style={{
-                ...T.bodyS, color: C.inkInv, fontSize: "0.86rem",
-                textDecoration: "none",
-                borderBottom: `1px solid ${C.faintInv}`,
-                paddingBottom: "0.15rem",
-                transition: "opacity 0.25s ease",
-                display: "inline-block", marginTop: "0.5rem"
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.opacity = 0.6}
-              onMouseLeave={(e) => e.currentTarget.style.opacity = 1}>
-                閱讀完整文章 ↗</a>
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-    </Fade>);
-
-};
+const NoteCard = ({ note, isOpen, onToggle }) => (
+  <article className="note">
+    <span className="tag">{note.type}</span>
+    <h3 className="h4">{note.title}</h3>
+    <p style={{ whiteSpace: "pre-line" }}>{isOpen ? note.full : note.excerpt}</p>
+    <button className="more" onClick={onToggle} style={{ background: "none", border: "none", padding: 0, textAlign: "left", cursor: "pointer" }}>
+      {isOpen ? "收起" : "讀全文 →"}
+    </button>
+    {note.link && isOpen && (
+      <a href={note.link} target="_blank" rel="noopener noreferrer" className="more">閱讀完整文章 ↗</a>
+    )}
+  </article>
+);
 
 const NotesSection = () => {
-  const [openIdx, setOpenIdx] = useState(null);
-  const [showAll, setShowAll] = useState(false);
-  const isMobile = useIsMobile();
-  const visible = showAll ? notes : notes.slice(0, 2);
+  const [openIdx, setOpenIdx] = React.useState(null);
+  const [showAll, setShowAll] = React.useState(false);
+  const visible = showAll ? notes : notes.slice(0, 3);
   return (
-    <section id="notes" style={{ ...{
-        background: C.bg2,
-        borderTop: "1px solid rgba(0,0,0,0.2)",
-        padding: isMobile ? "4.5rem 1.25rem" : "9rem 3rem",
-        color: C.inkInv
-      }, background: "rgb(28, 26, 24)" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <SectionHeader
-          eyebrow="Notebook · Fragments"
-          title="探索中的碎片"
-          subtitle="思考、寫作、草稿。不是結論，是還在發生的事。"
-          dark
-          right={
-          <div style={{ textAlign: "right" }}>
-              <div style={{ ...T.mono, color: C.faintInv, fontSize: "0.7rem" }}>{notes.length} / fragments</div>
-              <div style={{ ...T.label, color: C.ghostInv, marginTop: "0.4rem", fontStyle: "italic", textTransform: "none", letterSpacing: "0.08em" }}>
-                writing · sketch · thoughts
-              </div>
-            </div>
-          } />
-        
-
-        <div>
-          {visible.map((n, i) =>
-          <NoteRow
-            key={n.title}
-            note={n}
-            isOpen={openIdx === i}
-            onToggle={() => setOpenIdx((prev) => prev === i ? null : i)}
-            delay={i * 0.04} />
-
-          )}
-          <div style={{ borderTop: `1px solid ${C.hairInv}`, paddingTop: "1.5rem" }}>
-            <button
-              onClick={() => { setShowAll((v) => !v); setOpenIdx(null); }}
-              style={{
-                background: "none",
-                border: `1px solid ${C.hairInv}`,
-                color: C.inkInv,
-                ...T.label,
-                fontSize: "0.8rem",
-                letterSpacing: "0.12em",
-                padding: "0.7rem 1.1rem",
-                cursor: "pointer",
-              }}
-            >{showAll ? "收起筆記" : "更多筆記"}</button>
+    <React.Fragment>
+      <svg className="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" style={{ background: "var(--paper)" }} aria-hidden="true">
+        <path d="M0 34 C220 10 420 48 700 28 S1160 8 1440 30 L1440 56 L0 56Z" fill="var(--blue-100)" />
+      </svg>
+      <section className="sec bg-blue" id="notes" style={{ paddingTop: 84 }}>
+        <div className="wrap">
+          <div className="sec-head">
+            <div><div className="eyebrow">Notebook · Fragments</div><h2 className="h2">探索中的碎片</h2></div>
+            <p>思考、寫作、草稿。不是結論，是還在發生的事。</p>
           </div>
+          <div className="notes-grid">
+            {visible.map((note, i) => (
+              <NoteCard key={note.title} note={note} isOpen={openIdx === i} onToggle={() => setOpenIdx((prev) => prev === i ? null : i)} />
+            ))}
+          </div>
+          {notes.length > 3 && (
+            <div style={{ marginTop: 36 }}>
+              <button className="btn btn-ghost" onClick={() => { setShowAll((v) => !v); setOpenIdx(null); }}>
+                {showAll ? "收起筆記" : "更多筆記"}
+              </button>
+            </div>
+          )}
         </div>
-
-        <div style={{ marginTop: "2.5rem", display: "flex", justifyContent: "space-between" }}>
-          <span style={{
-            ...T.label, color: C.ghostInv,
-            fontStyle: "italic", textTransform: "none", letterSpacing: "0.08em", fontSize: "12px"
-          }}>還在更新 — </span>
-          <span style={{ ...T.mono, color: C.ghostInv, fontSize: "0.7rem" }}>NOTEBOOK /</span>
-        </div>
-      </div>
-    </section>);
-
+      </section>
+    </React.Fragment>
+  );
 };
 
 window.NotesSection = NotesSection;

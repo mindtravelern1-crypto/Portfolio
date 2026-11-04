@@ -2,75 +2,22 @@
    ABOUT — sidebar label + serif essay
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-const AboutSection = () => {
-  const isMobile = useIsMobile();
-  return (
-  <section id="about" style={{
-    background: C.bg1,
-    borderTop: `1px solid ${C.hair}`,
-    padding: isMobile ? "4.5rem 1.25rem" : "9rem 3rem",
-    position: "relative",
-  }}>
-    <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: isMobile ? "1fr" : "220px 1fr",
-        gap: isMobile ? "2.5rem" : "5rem",
-        alignItems: "start",
-      }}>
-        {/* Sidebar */}
-        <aside>
-          <Fade>
-            <Label>About</Label>
-          </Fade>
-          <Fade delay={0.06}>
-            <div style={{
-              width: 1, height: 56, background: C.accent, opacity: 0.85,
-              margin: "1.25rem 0 1.75rem 0.4rem",
-            }} />
-          </Fade>
-          <Fade delay={0.12}>
-            <div style={{ ...T.label, color: C.accent, marginBottom: "0.65rem" }}>Now</div>
-            <p style={{ ...T.caption, color: C.mid, margin: 0, lineHeight: 1.8 }}>
-              心理系大三<br />
-              預計 2028 畢業<br />
-              學體驗設計 · 創業課程<br />
-              台北 / Taipei
-            </p>
-          </Fade>
-          <Fade delay={0.18}>
-            <div style={{ ...T.label, color: C.accent, margin: "1.75rem 0 0.65rem" }}>Open to</div>
-            <p style={{ ...T.caption, color: C.mid, margin: 0, lineHeight: 1.8 }}>
-              體驗設計相關實習<br />
-              Side project<br />
-              對這些問題有興趣的對話
-            </p>
-          </Fade>
-        </aside>
-
-        {/* Main essay */}
-        <div>
-          <Fade>
-            <Label>About — 關於我</Label>
-          </Fade>
-          <Fade delay={0.08}>
-            <h2 style={{
-              ...T.h1,
-              fontSize: "clamp(1.85rem, 3.6vw, 2.6rem)",
-              margin: "1rem 0 3rem",
-              color: C.ink,
-              maxWidth: 720,
-              lineHeight: 1.35,
-            }}>
-              探索，是為了<br />
-              <span style={{
-                fontFamily: "'Cormorant Garamond',serif",
-                fontStyle: "italic", opacity: 0.72,
-              }}>擴展邊界 — 擴大舒適圈。</span>
-            </h2>
-          </Fade>
-
-          <div style={{ maxWidth: 600 }}>
+const AboutSection = () => (
+  <section className="sec bg-paper about" id="about">
+    <div className="wrap grid">
+      <aside>
+        <div className="side-card">
+          <span className="label">Now</span>
+          <p>心理系大三<br />預計 2028 畢業<br />學體驗設計 · 創業課程<br />台北 / Taipei</p>
+          <span className="label" style={{ marginTop: 20 }}>Open to</span>
+          <p>體驗設計相關實習<br />Side project<br />對這些問題有興趣的對話</p>
+        </div>
+      </aside>
+      <div style={{ position: "relative" }}>
+        <div className="eyebrow">About — 關於我</div>
+        <h2 className="h2 about-h2">探索，是為了<br /><span className="ul-doodle" style={{ color: "var(--blue-800)" }}>擴展邊界<svg style={{ color: "var(--blue-500)" }} aria-hidden="true"><use href="#d-ul" /></svg></span> — 擴大舒適圈。</h2>
+        <svg className="doodle" style={{ right: "6%", top: 4, width: 40, height: 38, color: "var(--coral)" }} aria-hidden="true"><use href="#d-heart" /></svg>
+        <div style={{ maxWidth: 640 }}>
             <Fade delay={0.14}>
               <p style={{ ...T.body, color: C.mid, marginBottom: "1.5rem", fontSize: "1rem" }}>
                 做東西時，我常先把自己放進使用者的位置，想像他們打開畫面時的感受：會不會看不懂、會不會覺得麻煩。我和 Claude 等 AI 工具協作，把想法快速做成能用的版本，再自己在手機和電腦上一遍遍操作，哪裡覺得卡、覺得怪，就改到順為止。介面用 Figma 規劃，插畫用 Procreate 手繪。
@@ -86,79 +33,15 @@ const AboutSection = () => {
                 現在是東吳心理系大三，預計 2028 畢業，同時在學體驗設計、商用設計，也修創業思維與實務。統計與實驗方法是系上的課。
               </p>
             </Fade>
-          </div>
-
-          {/* Cross-discipline grid */}
-          <Fade delay={0.32}>
-            <div style={{
-              paddingTop: "2rem",
-              borderTop: `1px solid ${C.hair}`,
-              display: "grid",
-              gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
-              gap: "2.5rem",
-              maxWidth: 720,
-            }}>
-              {[
-                { k: "心理學", v: "理解人怎麼想、怎麼選擇、怎麼變化的內在運作。" },
-                { k: "體驗設計", v: "理解介面怎麼成為一種讓人能誠實的環境。" },
-                { k: "Vibe Coding", v: "和 AI 一起把點子做出來，做我自己每天會用的工具。" },
-              ].map(({ k, v }) => (
-                <div key={k}>
-                  <div style={{ ...T.label, color: C.accent, marginBottom: "0.65rem" }}>{k}</div>
-                  <p style={{ ...T.caption, color: C.mid, margin: 0, fontSize: "0.85rem" }}>{v}</p>
-                </div>
-              ))}
-            </div>
-          </Fade>
+        </div>
+        <div className="pillars">
+          <div className="pillar"><div className="k">心理學</div><p>理解人怎麼想、怎麼選擇、怎麼變化的內在運作。</p></div>
+          <div className="pillar"><div className="k">體驗設計</div><p>理解介面怎麼成為一種讓人能誠實的環境。</p></div>
+          <div className="pillar"><div className="k">Vibe Coding</div><p>和 Claude 等 AI 工具一起把點子做出來，做我自己每天會用的工具。</p></div>
         </div>
       </div>
     </div>
   </section>
-  );
-};
-
-/* To add drawings: put files in assets/illustrations/ and append { src, alt } here. */
-const ILLUSTRATIONS = [];
-
-const IllustrationSection = () => {
-  const isMobile = useIsMobile();
-  const cells = ILLUSTRATIONS.length
-    ? ILLUSTRATIONS
-    : [0, 1, 2].map((i) => ({ empty: true, key: i }));
-  return (
-    <section id="illustrations" style={{
-      background: C.bg0,
-      borderTop: `1px solid ${C.hair}`,
-      padding: isMobile ? "3.5rem 1.25rem" : "5.5rem 3rem",
-    }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <Label>插畫</Label>
-        <p style={{ ...T.body, color: C.mid, margin: "0.85rem 0 1.75rem" }}>手繪插畫（整理中）</p>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: isMobile ? "repeat(3, 1fr)" : "repeat(3, minmax(0, 220px))",
-          gap: isMobile ? "0.75rem" : "1.25rem",
-        }}>
-          {cells.map((cell, i) => (
-            <div key={cell.src || cell.key || i} style={{
-              aspectRatio: "4 / 5",
-              border: `1px solid ${C.hair}`,
-              background: C.bg1,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              overflow: "hidden",
-            }}>
-              {cell.src ? (
-                <img src={cell.src} alt={cell.alt || ""} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-              ) : null}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+);
 
 window.AboutSection = AboutSection;
-window.IllustrationSection = IllustrationSection;

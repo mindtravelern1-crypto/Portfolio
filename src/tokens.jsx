@@ -21,8 +21,8 @@ const T = {
   },
   h2: {
     fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
-    fontWeight: 500,
-    fontSize: "clamp(1.55rem, 2.8vw, 2.05rem)",
+    fontWeight: 600,
+    fontSize: "clamp(1.7rem, 2.8vw, 2.25rem)",
     lineHeight: 1.25,
     letterSpacing: "-0.015em"
   },
@@ -41,28 +41,30 @@ const T = {
     letterSpacing: "-0.005em"
   },
   body: {
-    fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
+    fontFamily: "'Noto Sans TC', system-ui, sans-serif",
     fontWeight: 400,
-    fontSize: "1.02rem",
-    lineHeight: 2.05
+    fontSize: "17px",
+    lineHeight: 1.85,
+    letterSpacing: "0.02em"
   },
   bodyS: {
-    fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
+    fontFamily: "'Noto Sans TC', system-ui, sans-serif",
     fontWeight: 400,
-    fontSize: "0.92rem",
-    lineHeight: 1.95
+    fontSize: "15px",
+    lineHeight: 1.75,
+    letterSpacing: "0.02em"
   },
   caption: {
-    fontFamily: "'Noto Serif TC','Cormorant Garamond',serif",
+    fontFamily: "'Noto Sans TC', system-ui, sans-serif",
     fontWeight: 400,
-    fontSize: "0.88rem",
-    lineHeight: 1.85
+    fontSize: "15px",
+    lineHeight: 1.75
   },
   label: {
-    fontFamily: "'JetBrains Mono', ui-monospace, monospace",
-    fontWeight: 500,
-    fontSize: "0.8rem",
-    letterSpacing: "0.12em",
+    fontFamily: "'Noto Sans TC', system-ui, sans-serif",
+    fontWeight: 600,
+    fontSize: "12.5px",
+    letterSpacing: "0.2em",
     textTransform: "uppercase"
   },
   mono: {
@@ -75,16 +77,21 @@ const T = {
 
 /* Colours — warm paper palette (theme variations applied via body[data-theme]) */
 const C = {
-  bg0: "#f5f4f0",
-  bg1: "#edebe6",
-  bg2: "#1a1a1a",
-  paper: "#ece9e2",
-  ink: "#1a1a1a",
-  /* Muted blue. #2f5d8a is 6.25:1 on #f5f4f0 and 5.77:1 on #edebe6; paper text on this blue is 6.25:1. */
+  bg0: "#f7f4ee",
+  bg1: "#efeae1",
+  bg2: "#24496d",
+  paper: "#f7f4ee",
+  card: "#fffdf9",
+  ink: "#1e2126",
   accent: "#2f5d8a",
-  mid: "#3a3a3a",
-  faint: "#524e4a",
-  ghost: "#524e4a",
+  blue800: "#24496d",
+  blue900: "#16263a",
+  blue100: "#e3ebf3",
+  blue50: "#eff3f7",
+  coral: "#d8644f",
+  mid: "#3c3f45",
+  faint: "#6a6760",
+  ghost: "#6a6760",
   hair: "rgba(26,26,26,0.12)",
   hairSoft: "rgba(26,26,26,0.07)",
   hairBold: "rgba(26,26,26,0.22)",
