@@ -105,7 +105,7 @@ const AboutSection = () => {
             </Fade>
             <Fade delay={0.44}>
               <p style={{ ...T.body, color: C.mid, marginBottom: "3rem", fontSize: "1rem" }}>
-                做網頁的時候，需求與體驗由我決定，程式由 Claude 等 AI 工具撰寫；我自己會寫的只有 HTML。介面用 Figma，插畫用 Procreate。也會依手機版與電腦版調整畫面，並用手機和電腦實際操作，把跑版和不好用的地方改掉。
+                做東西時，我常先把自己放進使用者的位置，想像他們打開畫面時的感受：會不會看不懂、會不會覺得麻煩。我和 Claude 等 AI 工具協作，把想法快速做成能用的版本，再自己在手機和電腦上一遍遍操作，哪裡覺得卡、覺得怪，就改到順為止。介面用 Figma 規劃，插畫用 Procreate 手繪。
               </p>
             </Fade>
           </div>
@@ -123,7 +123,7 @@ const AboutSection = () => {
               {[
                 { k: "心理學", v: "理解人怎麼想、怎麼選擇、怎麼變化的內在運作。" },
                 { k: "UIUX", v: "理解介面怎麼成為一種讓人能誠實的環境。" },
-                { k: "Vibe Coding", v: "需求與體驗我來定，程式由 Claude 等 AI 工具撰寫。" },
+                { k: "Vibe Coding", v: "和 AI 一起把點子做出來，做我自己每天會用的工具。" },
               ].map(({ k, v }) => (
                 <div key={k}>
                   <div style={{ ...T.label, color: C.faint, marginBottom: "0.65rem" }}>{k}</div>
