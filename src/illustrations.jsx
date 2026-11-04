@@ -34,13 +34,11 @@ const ArtPicture = ({ item, full = false }) => (
   </picture>
 );
 
-const Lightbox = ({ items, index, onClose, onIndex }) => {
+const Lightbox = ({ items, index, onClose, onIndex, returnFocus }) => {
   const closeRef = React.useRef(null);
-  const backRef = React.useRef(null);
   const indexRef = React.useRef(index);
   indexRef.current = index;
   React.useEffect(() => {
-    backRef.current = document.activeElement;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     closeRef.current && closeRef.current.focus();
@@ -54,14 +52,15 @@ const Lightbox = ({ items, index, onClose, onIndex }) => {
     return () => {
       document.body.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
-      if (backRef.current && backRef.current.focus) backRef.current.focus();
+      const back = returnFocus && returnFocus.current;
+      if (back && back.focus) back.focus();
     };
   }, []);
   const item = items[index];
   const touch = React.useRef(null);
   return (
     <div className="lb" role="dialog" aria-modal="true" aria-label="插畫大圖" onClick={onClose}>
-      <button ref={closeRef} className="lb-x" aria-label="關閉" onClick={onClose}>✕</button>
+      <button ref={closeRef} type="button" className="lb-x" aria-label="關閉" onClick={(e) => { e.stopPropagation(); onClose(); }}>✕</button>
       <button className="lb-nav prev" aria-label="上一張" onClick={(e) => { e.stopPropagation(); onIndex((index - 1 + items.length) % items.length); }}>←</button>
       <button className="lb-nav next" aria-label="下一張" onClick={(e) => { e.stopPropagation(); onIndex((index + 1) % items.length); }}>→</button>
       <div
@@ -85,7 +84,7 @@ const Lightbox = ({ items, index, onClose, onIndex }) => {
 };
 
 const ArtCard = ({ item, onOpen }) => (
-  <figure className="art-mat" tabIndex={0} role="button" aria-label={`${item.id}，${item.alt}`} onClick={onOpen} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpen(); } }}>
+  <figure className="art-mat" tabIndex={0} role="button" aria-label={`${item.id}，${item.alt}`} onClick={(e) => onOpen(e.currentTarget)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpen(e.currentTarget); } }}>
     <ArtPicture item={item} />
     <figcaption>
       <span className="idx">{item.id}</span>
@@ -111,6 +110,7 @@ const Gallery = ({ count, items, onOpen }) => {
 
 const IllustrationSection = () => {
   const [open, setOpen] = React.useState(null);
+  const returnFocus = React.useRef(null);
   const [cols, setCols] = React.useState(() => (typeof window !== "undefined" && window.innerWidth <= 720 ? 2 : 3));
   React.useEffect(() => {
     const onResize = () => setCols(window.innerWidth <= 720 ? 2 : 3);
@@ -129,14 +129,15 @@ const IllustrationSection = () => {
           {packColumns(ILLUSTRATIONS, cols).map((col, i) => (
             <div className="gcol" key={i}>
               {col.items.map((item) => (
-                <ArtCard key={item.id} item={item} onOpen={() => setOpen(ILLUSTRATIONS.findIndex((x) => x.id === item.id))} />
+                <ArtCard key={item.id} item={item} onOpen={(el) => { returnFocus.current = el; setOpen(ILLUSTRATIONS.findIndex((x) => x.id === item.id)); }} />
               ))}
             </div>
           ))}
         </div>
       </div>
-      {open != null && (
-        <Lightbox items={ILLUSTRATIONS} index={open} onClose={() => setOpen(null)} onIndex={setOpen} />
+      {open != null && ReactDOM.createPortal(
+        <Lightbox items={ILLUSTRATIONS} index={open} onClose={() => setOpen(null)} onIndex={setOpen} returnFocus={returnFocus} />,
+        document.body
       )}
     </section>
   );
