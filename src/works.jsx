@@ -1,6 +1,6 @@
 /* Works — split media/text cards. Copy stays in data.jsx. */
 
-const WORK_ORDER = ["CATI", "心旅人自我探索APP", "三分鐘探索你的潛能", "讀懂自己，再選科系"];
+const WORK_ORDER = ["CATI", "心旅人自我探索APP", "讀懂自己，再選科系", "三分鐘探索你的潛能"];
 
 const orderedWorks = () => WORK_ORDER.map((title, i) => {
   const work = works.find((w) => w.title === title);
