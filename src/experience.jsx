@@ -1,8 +1,8 @@
 const EXPERIENCE = [
-  { when: "2026/10 – 迄今", title: "家教", text: "國小、國中學生各一位" },
-  { when: "2025（數個月）", title: "知人有限公司", text: "接案影片剪輯。以 CapCut 剪輯約 20 支公司客戶案影片。" },
-  { when: "2025/07 – 2025/08", title: "三發教育基金會", text: "美宣行銷（遠端）。以 Canva 為「人各有痣」企劃製作 9 篇 Instagram 貼文。" },
-  { when: "2024/10 – 2026/06", title: "東吳大學心理學系系辦", text: "工讀生" },
+  { when: "2026/10 – 迄今", title: "家教", text: "國小、國中各一位學生。" },
+  { when: "2025（數個月）", title: "知人有限公司", text: "接案剪影片。用 CapCut 剪了約 20 支客戶的片子。" },
+  { when: "2025/07 – 2025/08", title: "三發教育基金會", text: "遠端做美宣。用 Canva 為「人各有痣」做了 9 篇 Instagram 貼文。" },
+  { when: "2024/10 – 2026/06", title: "東吳大學心理學系系辦", text: "系辦工讀生。" },
 ];
 
 const ExperienceSection = () => (
@@ -10,7 +10,7 @@ const ExperienceSection = () => (
     <div className="wrap">
       <div className="sec-head">
         <div><div className="eyebrow">Experience</div><h2 className="h2">經歷</h2></div>
-        <p>工讀與接案。</p>
+        <p>家教、系辦工讀，還有剪輯和美宣的接案。</p>
       </div>
       <div className="tl">
         <svg className="line" viewBox="0 0 14 400" preserveAspectRatio="none" aria-hidden="true">

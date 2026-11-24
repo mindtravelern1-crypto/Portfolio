@@ -1,6 +1,6 @@
 /* Works — split media/text cards. Copy stays in data.jsx. */
 
-const WORK_ORDER = ["CATI", "心旅人自我探索APP", "三分鐘探索你的潛能", "讀懂自己，再選科系"];
+const WORK_ORDER = ["CATI", "心旅人自我探索APP", "讀懂自己，再選科系", "三分鐘探索你的潛能"];
 
 const orderedWorks = () => WORK_ORDER.map((title, i) => {
   const work = works.find((w) => w.title === title);
@@ -24,7 +24,7 @@ const WorksSection = ({ onOpenCase }) => {
             <div className="eyebrow">Selected Work</div>
             <h2 className="h2"><span className="ul-doodle">作品<svg style={{ color: "var(--blue-500)" }} aria-hidden="true"><use href="#d-ul" /></svg></span></h2>
           </div>
-          <p>兩個主要作品，以及兩個還在開發的試用版。</p>
+          <p>前面兩個是主要作品。後面兩個小一點：科系探索已上線、正在收回饋；三分鐘探索還是試用版。</p>
         </div>
 
         <article className="proj">
@@ -38,7 +38,7 @@ const WorksSection = ({ onOpenCase }) => {
             <h3 className="h3">{cati.title}</h3>
             <div className="sub">{cati.sub}</div>
             <div className="meta">
-              <span>Side Project · 業主合作</span>
+              <span>課程專案 · 業主合作</span>
               <span className="sep">·</span>
               <span>{cati.type}</span>
               <span className="status live">{cati.status}</span>
@@ -49,7 +49,7 @@ const WorksSection = ({ onOpenCase }) => {
                 <div key={s.l}><b>{s.n}</b><span>{s.l}</span></div>
               ))}
             </div>
-            <div className="ga">Google Analytics 由我設定。</div>
+            <div className="ga">Google Analytics（看網站流量的工具）是我設定的。</div>
             <div className="tags">{cardTags(cati).map((t) => <span className="tag" key={t}>{t}</span>)}</div>
             <div className="acts">
               <button className="btn btn-primary" onClick={() => onOpenCase(cati)}>看完整案例 →</button>
@@ -75,9 +75,9 @@ const WorksSection = ({ onOpenCase }) => {
             </div>
           </div>
           <div className="media mist">
-            <img className="shot" src="assets/works/01/ux-thinking-board.webp" alt="心旅人 FigJam 上的 UX 思考流程" style={{ width: "92%", left: "-6%", top: "12%", transform: "rotate(-4deg)", opacity: 0.9 }} />
+            <img className="shot" src="assets/works/01/ux-thinking-board.webp" alt="心旅人在 FigJam 上的思考流程" style={{ width: "92%", left: "-6%", top: "12%", transform: "rotate(-4deg)", opacity: 0.9 }} />
             <img className="phone" src="assets/works/01/login-screen.webp" alt="心旅人登入畫面" style={{ right: "14%", top: 26 }} />
-            <span className="pin" style={{ left: "8%", bottom: 40 }}>UX 思考流程 · FigJam Board</span>
+            <span className="pin" style={{ left: "8%", bottom: 40 }}>FigJam 上的思考流程</span>
             <svg className="doodle" style={{ right: "9%", top: 36, width: 22, height: 22, color: "var(--blue-500)" }} aria-hidden="true"><use href="#d-spark" /></svg>
           </div>
         </article>
@@ -87,7 +87,7 @@ const WorksSection = ({ onOpenCase }) => {
             <article className="trial" key={work.title}>
               <div className="thumb"><img src={work.mainImage} alt={work.title} /></div>
               <div className="in">
-                <span className="status">{work.status}</span>
+                <span className={String(work.status).includes("已上線") ? "status live" : "status"}>{work.status}</span>
                 <h3 className="h4" style={{ fontSize: 21, margin: "8px 0 4px" }}>{work.title}</h3>
                 <div className="meta" style={{ fontSize: 13, color: "var(--ink-3)", marginBottom: 10 }}>{work.type}</div>
                 <p className="small">{work.brief}</p>
@@ -103,7 +103,7 @@ const WorksSection = ({ onOpenCase }) => {
             </article>
           ))}
         </div>
-        <p className="others">其他小工具：<a href="https://job-tracker-docs.vercel.app" target="_blank" rel="noopener noreferrer">職缺追蹤網站</a>、<a href="https://design-gym-ntfu.vercel.app" target="_blank" rel="noopener noreferrer">設計與繪畫訓練場</a>（自用，和 Claude 等 AI 工具一起做的）</p>
+        <p className="others">另外三個是我自己在用的小工具：<a href="https://job-tracker-docs.vercel.app" target="_blank" rel="noopener noreferrer">職缺追蹤網站</a>、<a href="https://design-gym-ntfu.vercel.app" target="_blank" rel="noopener noreferrer">設計與繪畫訓練場</a>、<a href="https://ai-learning-tracker-af9e1d.surge.sh" target="_blank" rel="noopener noreferrer">AI 變現學習追蹤器</a>（與 Claude 等 AI 工具協作）</p>
       </div>
     </section>
   );

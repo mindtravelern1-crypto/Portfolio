@@ -86,7 +86,7 @@ const CaseStudy = ({ work, onClose }) => {
             <a href={work.link} target="_blank" rel="noopener noreferrer"
               className="ul cs-link"
               style={{ ...T.bodyS, color: C.ink }}
-            >{work.linkLabel || "體驗產品"} ↗</a>
+            >{work.linkLabel || "看網站"} ↗</a>
           )}
         </div>
       </div>
@@ -203,7 +203,7 @@ const CaseStudy = ({ work, onClose }) => {
                 <Placeholder
                   kind={work.heroKind || "frame"}
                   palette={palette}
-                  caption={work.heroKind === "figjam" ? "FigJam · 設計思考 board" : `${work.title} · ${work.sub} · main view`}
+                  caption={work.heroKind === "figjam" ? "FigJam 上的思考流程" : `${work.title} · ${work.sub}`}
                   label={`${work.id} · ${work.heroKind === "figjam" ? "FIGJAM" : "HERO"}`}
                   height={520}
                 />
@@ -299,11 +299,11 @@ const CaseStudy = ({ work, onClose }) => {
             <div style={{ display: "flex", gap: "2rem", alignItems: "center", flexWrap: "wrap" }}>
               {work.link && (
                 <a href={work.link} target="_blank" rel="noopener noreferrer" className="btn btn-primary"
-                >{work.linkLabel || "前往體驗"} ↗</a>
+                >{work.linkLabel || "看網站"} ↗</a>
               )}
               {work.figma && (
                 <a href={work.figma} target="_blank" rel="noopener noreferrer" className="btn btn-ghost"
-                >在 FigJam 看完整設計思考 ↗</a>
+                >看完整 FigJam ↗</a>
               )}
               <button onClick={onClose} className="btn btn-quiet" style={{ background: "none", border: "none", cursor: "pointer" }}>返回作品集</button>
             </div>
