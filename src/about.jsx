@@ -7,37 +7,37 @@ const AboutSection = () => (
     <div className="wrap grid">
       <aside>
         <div className="side-card">
-          <span className="label">Now</span>
-          <p>心理系大三<br />預計 2028 畢業<br />學體驗設計 · 創業課程<br />台北 / Taipei</p>
-          <span className="label" style={{ marginTop: 20 }}>Open to</span>
-          <p>體驗設計相關實習<br />Side project<br />對這些問題有興趣的對話</p>
+          <span className="label">現在</span>
+          <p>心理系大三<br />預計 2028 畢業<br />也在學設計和創業課<br />台北</p>
+          <span className="label" style={{ marginTop: 20 }}>開放</span>
+          <p>體驗設計實習<br />一起做小專案<br />聊作品或實習</p>
         </div>
       </aside>
       <div style={{ position: "relative" }}>
         <div className="eyebrow">About — 關於我</div>
-        <h2 className="h2 about-h2">探索，是為了<br /><span className="ul-doodle" style={{ color: "var(--blue-800)" }}>擴展邊界<svg style={{ color: "var(--blue-500)" }} aria-hidden="true"><use href="#d-ul" /></svg></span> — 擴大舒適圈。</h2>
+        <h2 className="h2 about-h2">做之前，先想像<br /><span className="ul-doodle" style={{ color: "var(--blue-800)" }}>用起來的感覺<svg style={{ color: "var(--blue-500)" }} aria-hidden="true"><use href="#d-ul" /></svg></span></h2>
         <svg className="doodle" style={{ right: "6%", top: 4, width: 40, height: 38, color: "var(--coral)" }} aria-hidden="true"><use href="#d-heart" /></svg>
         <div style={{ maxWidth: 640 }}>
             <Fade delay={0.14}>
               <p style={{ ...T.body, color: C.mid, marginBottom: "1.5rem", fontSize: "1rem" }}>
-                做東西時，我常先把自己放進使用者的位置，想像他們打開畫面時的感受：會不會看不懂、會不會覺得麻煩。我和 Claude 等 AI 工具協作，把想法快速做成能用的版本，再自己在手機和電腦上一遍遍操作，哪裡覺得卡、覺得怪，就改到順為止。介面用 Figma 規劃，插畫用 Procreate 手繪。
+                做東西時，我先把自己放進使用者的位置，想像他打開畫面會不會看不懂、會不會覺得麻煩。要做成能點的版本時，與 Claude 等 AI 工具協作。然後我在手機和電腦上自己走幾遍，哪裡卡、哪裡怪，就改到順。介面用 Figma 排，插畫用 Procreate 手繪。
               </p>
             </Fade>
             <Fade delay={0.2}>
               <p style={{ ...T.body, color: C.mid, marginBottom: "1.5rem", fontSize: "1rem" }}>
-                國中看書時意外接觸到心理學，當時因「畫畫吃不飽」放下畫畫；後來在心理系重新畫，把心理學和繪畫接到體驗設計。
+                國中看書時碰到心理學。那時候覺得畫畫吃不飽，先放下了。進心理系之後又開始畫，現在把心理學和畫用在體驗設計上。
               </p>
             </Fade>
             <Fade delay={0.26}>
               <p style={{ ...T.body, color: C.mid, marginBottom: "3rem", fontSize: "1rem" }}>
-                現在是東吳心理系大三，預計 2028 畢業，同時在學體驗設計、商用設計，也修創業思維與實務。統計與實驗方法是系上的課。
+                現在是東吳心理系大三，預計 2028 畢業。同時在學體驗設計、商用設計，也修創業思維與實務。統計和實驗方法是系上的課。
               </p>
             </Fade>
         </div>
         <div className="pillars">
-          <div className="pillar"><div className="k">心理學</div><p>理解人怎麼想、怎麼選擇、怎麼變化的內在運作。</p></div>
-          <div className="pillar"><div className="k">體驗設計</div><p>理解介面怎麼成為一種讓人能誠實的環境。</p></div>
-          <div className="pillar"><div className="k">Vibe Coding</div><p>和 Claude 等 AI 工具一起把點子做出來，做我自己每天會用的工具。</p></div>
+          <div className="pillar"><div className="k">心理學</div><p>人怎麼想、怎麼做選擇。我用這個來出題、看回答。</p></div>
+          <div className="pillar"><div className="k">體驗設計</div><p>人打開畫面之後，看不看得懂、會不會做到一半就走。</p></div>
+          <div className="pillar"><div className="k">和 AI 協作</div><p>做成我自己會用的小工具，例如記職缺、練設計和畫畫。</p></div>
         </div>
       </div>
     </div>

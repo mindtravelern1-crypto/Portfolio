@@ -123,7 +123,7 @@ const IllustrationSection = () => {
       <div className="wrap">
         <div className="sec-head">
           <div><div className="eyebrow">Illustration</div><h2 className="h2">插畫</h2></div>
-          <p>Procreate 手繪</p>
+          <p>用 Procreate 手繪。這些是我的畫，不是上面產品的畫面。</p>
         </div>
         <div className="gallery" style={{ display: "flex" }}>
           {packColumns(ILLUSTRATIONS, cols).map((col, i) => (

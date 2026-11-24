@@ -24,8 +24,8 @@ const NotesSection = () => {
       <section className="sec bg-blue" id="notes" style={{ paddingTop: 84 }}>
         <div className="wrap">
           <div className="sec-head">
-            <div><div className="eyebrow">Notebook · Fragments</div><h2 className="h2">探索中的碎片</h2></div>
-            <p>思考、寫作、草稿。不是結論，是還在發生的事。</p>
+            <div><div className="eyebrow">Notes</div><h2 className="h2">筆記</h2></div>
+            <p>我自己寫的短文，不是作品說明。有的還在想，沒有結論。</p>
           </div>
           <div className="notes-grid">
             {visible.map((note, i) => (
